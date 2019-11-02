@@ -1,0 +1,34 @@
+.container {
+    margin: 0 auto;
+    max-width: $container;
+    padding: 0 15px;
+    width: 100%;
+  }
+  
+  .container-md {
+    margin: 0 auto;
+    max-width: $container-md;
+    padding: 0 15px;
+    width: 100%;
+  }
+  
+  .container-sm {
+    margin: 0 auto;
+    max-width: $container-sm;
+    padding: 0 15px;
+    width: 100%;
+  }
+  
+  .container-xs {
+    margin: 0 auto;
+    max-width: $container-xs;
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  .container-form {
+    margin: 0 auto;
+    max-width: 475px;
+    padding: 0 15px;
+    width: 100%;
+  }

@@ -1,0 +1,33 @@
+// Font size
+// ---------------------------------------
+
+$font-size-default:     14px !default;
+$font-size-xl:          30px !default;
+$font-size-md:          20px !default;
+$font-size-s:           18px !default;
+$font-size-xs:          9px !default;
+$font-size-p:           12px !default;
+
+// Screens
+// ---------------------------------------
+
+$xs-min:		        320px !default;
+
+// BreakPoints 
+// ---------------------------------------
+
+$xs:              359px !default;     //Extra small     
+$sm:					    767px !default; 	// Small devices
+$md:					    991px !default; 	// Medium devices 
+$lg:					    1366px !default; 	// Large devices 
+$xl:					    1700px !default; 	// Extra large devices 
+
+$desktop:					$lg;
+
+$container-sm-max-width: 	400px !default;
+$container-md-max-width: 	880px !default;
+
+$container-xs: 	            780px !default; 
+$container-sm: 	            920px !default; 
+$container-md: 	            1030px !default;
+$container:                 1240px !default; 
