@@ -1,31 +1,30 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { auth } from "../actions/user_actions";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { auth } from '../actions/user_actions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function(ComposedClass, reload, adminRoute = null) {
   class AuthenticationCheck extends Component {
-    
     _isMounted = false;
     state = {
       loading: true
     };
 
-    componentDidMount() {
+    componentWillMount() {
       this._isMounted = true;
       this.props.dispatch(auth()).then(response => {
         let user = this.props.user.userdata;
 
         if (!user.isAuth) {
           if (reload) {
-            this.props.history.push("/prisijungti");
+            this.props.history.push('/prisijungti');
           }
         } else {
           if (adminRoute && user.isAdmin) {
-            this.props.history.push("/vartotojas/informacija");
+            this.props.history.push('/vartotojas/informacija');
           } else {
             if (reload === false) {
-              this.props.history.push("/vartotojas/informacija");
+              this.props.history.push('/vartotojas/informacija');
             }
           }
         }
@@ -44,7 +43,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
       if (this.state.loading) {
         return (
           <div className="main-loader">
-            <CircularProgress style={{ color: "#2196F3" }} thickness={7} />
+            <CircularProgress style={{ color: '#2196F3' }} thickness={7} />
           </div>
         );
       } else {
