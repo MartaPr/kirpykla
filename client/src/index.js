@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './resources/styles.css'
-import './resources/tablet.css'
-import './resources/mobile.css'
+import './resources/styles/styles.scss'
+// import './resources/tablet.css'
+// import './resources/mobile.css'
 import  Routes from './routes'
 import { BrowserRouter} from 'react-router-dom'
 
