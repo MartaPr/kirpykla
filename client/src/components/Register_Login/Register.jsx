@@ -129,12 +129,15 @@ class Register extends Component {
             />
           </div>
           <div className="checkbox">
-            <input type="checkbox"/>
-            <div> 
-            <div> su privatumo <a href="">taisyklėmis</a></div>  
-             <div> ir <a href="">politika</a> susipažinau </div>
+            <input type="checkbox" />
+            <div>
+              <div>
+                su privatumo <span>taisyklėmis</span>
+              </div>
+              <div>
+                ir <span>politika</span> susipažinau
+              </div>
             </div>
-           
           </div>
           {this.state.formError ? (
             <div className="error-label">
