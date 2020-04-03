@@ -6,11 +6,11 @@ import {
 
 export default function(state = {}, action) {
   switch (action.type) {
-    case GET_SERVICE:
-      return {
-        ...state,
-        getService: action.payload
-      };
+    // case GET_SERVICE:
+    //   return {
+    //     ...state,
+    //     getService: action.payload
+    //   };
     case GET_GALLERY_ITEM:
       return {
         ...state,
