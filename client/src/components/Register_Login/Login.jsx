@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/user_actions";
-import FormField from "./../utils/Form/FormField";
-import { update, generateData, isFormValid } from "../utils/Form/FormActions";
-import { withRouter } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/user_actions';
+import FormField from './../utils/Form/FormField';
+import { update, generateData, isFormValid } from '../utils/Form/FormActions';
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
   state = {
     formError: false,
-    formSuccess: "",
+    formSuccess: '',
     formdata: {
       email: {
-        element: "input",
-        value: "",
+        element: 'input',
+        value: '',
         config: {
-          name: "email_input",
-          type: "email",
-          placeholder: "el.pastas@pavyzdys.lt"
+          name: 'email_input',
+          type: 'email',
+          placeholder: 'el.pastas@pavyzdys.lt'
         },
         validation: {
           required: true,
@@ -24,28 +24,28 @@ class Login extends Component {
         },
         valid: false,
         touched: false,
-        validationMessage: ""
+        validationMessage: ''
       },
       password: {
-        element: "input",
-        value: "",
+        element: 'input',
+        value: '',
         config: {
-          name: "password_input",
-          type: "password",
-          placeholder: "Įveskite slaptažodį"
+          name: 'password_input',
+          type: 'password',
+          placeholder: 'Įveskite slaptažodį'
         },
         validation: {
           required: true
         },
         valid: false,
         touched: false,
-        validationMessage: ""
+        validationMessage: ''
       }
     }
   };
 
   updateForm = element => {
-    const newFormdata = update(element, this.state.formdata, "login");
+    const newFormdata = update(element, this.state.formdata, 'login');
     this.setState({
       formError: false,
       formdata: newFormdata
@@ -55,13 +55,13 @@ class Login extends Component {
   submitForm = e => {
     e.preventDefault();
 
-    let dataToSubmit = generateData(this.state.formdata, "login");
-    let formIsValid = isFormValid(this.state.formdata, "login");
+    let dataToSubmit = generateData(this.state.formdata, 'login');
+    let formIsValid = isFormValid(this.state.formdata, 'login');
 
     if (formIsValid) {
       this.props.dispatch(loginUser(dataToSubmit)).then(response => {
         if (response.payload.loginSuccess) {
-          this.props.history.push("/vartotojas/informacija");
+          this.props.history.push('/vartotojas/informacija');
         } else {
           this.setState({
             formError: true
@@ -76,24 +76,32 @@ class Login extends Component {
   };
   render() {
     return (
-      <div className="signin_wrapper">
-        <form onSubmit={event => this.submitForm(event)}>
+      <div className="signin container-form">
+        <form
+          className="signin__register-form"
+          onSubmit={event => this.submitForm(event)}
+        >
           <FormField
-            id={"email"}
+            id={'email'}
             formdata={this.state.formdata.email}
             change={element => this.updateForm(element)}
           />
+
           <FormField
-            id={"password"}
+            id={'password'}
             formdata={this.state.formdata.password}
             change={element => this.updateForm(element)}
           />
+
           {this.state.formError ? (
             <div className="error-label">
               Klaidingas el. paštas arba slaptažodis
             </div>
           ) : null}
-          <button className="button button-submit button-login" onSubmit={event => this.submitForm(event)}>
+          <button
+            className="btn btn-default"
+            onSubmit={event => this.submitForm(event)}
+          >
             PRISIJUNGTI
           </button>
         </form>

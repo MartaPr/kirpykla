@@ -1,0 +1,23 @@
+.btn-default {
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 10px;
+  background: #3e444c;
+  margin-top: 20px;
+  font-size: 16px;
+  width: 225px;
+  height: 50px;
+  border-radius: 4px;
+  color: #fff;
+  a {
+    text-transform: uppercase;
+    padding-top: 5px;
+    margin-left: 0;
+    display: table;
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+  }
+}

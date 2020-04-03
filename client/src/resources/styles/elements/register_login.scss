@@ -1,0 +1,31 @@
+.register-login {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__register-form {
+    width: 100%;
+    .form-template {
+      margin-bottom: 20px;
+      &:first-child {
+        margin-top: 50px;
+      }
+      .input-field {
+        .error-label {
+          color: red;
+          margin-top: 7px;
+        }
+      }
+    }
+  }
+  .checkbox {
+    display: flex;
+    .privacy-policy {
+      margin-left: 15px;
+    }
+  }
+}

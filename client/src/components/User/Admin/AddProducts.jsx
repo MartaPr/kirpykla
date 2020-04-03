@@ -15,44 +15,44 @@ class AddProduct extends Component {
     formError: false,
     formSuccess: false,
     formdata: {
-    category: {
+      category: {
         element: 'select',
         value: '',
-        config:{
-            label: 'Pasirinkite paslaugą',
-            name: 'service_input',
-            options:[
-              { key: 'Kirpimas', value: 'Kirpimas' },
-              { key: 'Dažymas', value: 'Dažymas' },
-              { key: 'Kirpimas + dažymas', value: 'Kirpimas + dažymas' },
-              { key: 'Proginė šukuosena', value: 'Proginė šukuosena' }
-            ]
+        config: {
+          label: 'Pasirinkite paslaugą',
+          name: 'service_input',
+          options: [
+            { key: 'Kirpimas', value: 'Kirpimas' },
+            { key: 'Dažymas', value: 'Dažymas' },
+            { key: 'Kirpimas + dažymas', value: 'Kirpimas + dažymas' },
+            { key: 'Proginė šukuosena', value: 'Proginė šukuosena' }
+          ]
         },
-        validation:{
-            required: true
+        validation: {
+          required: true
         },
         valid: false,
         touched: false,
-        validationMessage:'',
+        validationMessage: '',
         showlabel: true
-    },
+      },
       description: {
         element: 'textarea',
         value: '',
-        config:{
-            label: '',
-            name: 'description_input',
-            type: 'text',
-            placeholder: ''
+        config: {
+          label: '',
+          name: 'description_input',
+          type: 'text',
+          placeholder: ''
         },
-        validation:{
-            required: false
+        validation: {
+          required: false
         },
         valid: false,
         touched: false,
-        validationMessage:'',
+        validationMessage: '',
         showlabel: true
-    },
+      },
       price: {
         element: 'input',
         value: '',
@@ -91,7 +91,6 @@ class AddProduct extends Component {
       }
     }
   };
-  
 
   updateFields = newFormdata => {
     this.setState({
@@ -108,27 +107,31 @@ class AddProduct extends Component {
   };
 
   resetFieldHandler = () => {
-    const newFormData = resetFields(this.state.formdata,'products');
+    const newFormData = resetFields(this.state.formdata, 'products');
 
     this.setState({
-        formdata: newFormData,
-        formSuccess:true
+      formdata: newFormData,
+      formSuccess: true
     });
-    setTimeout(()=>{
-        this.setState({
-            formSuccess: false
-        },()=>{
-            this.props.dispatch(clearProduct())
-        })
-    },3000)
-
-}
+    setTimeout(() => {
+      this.setState(
+        {
+          formSuccess: false
+        },
+        () => {
+          this.props.dispatch(clearProduct());
+        }
+      );
+    }, 3000);
+  };
 
   submitForm = event => {
     event.preventDefault();
 
     let datatoSubmit = generateData(this.state.formdata, 'products');
     let formIsValid = isFormValid(this.state.formdata, 'products');
+
+    console.log(this.props);
 
     if (formIsValid) {
       this.props.dispatch(addProduct(datatoSubmit)).then(() => {
@@ -152,7 +155,7 @@ class AddProduct extends Component {
           <div>
             <h1>Pridėti paslaugą</h1>
             <form onSubmit={event => this.submitForm(event)}>
-            <FormField
+              <FormField
                 id={'category'}
                 formdata={this.state.formdata.category}
                 change={element => this.updateForm(element)}
@@ -183,7 +186,6 @@ class AddProduct extends Component {
               ) : null}
 
               {this.state.formError ? (
-            
                 <div className="error-label">Klaidingi duomenys</div>
               ) : null}
 

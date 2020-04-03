@@ -1,25 +1,25 @@
-import React from "react";
-import ButtonOne from "../utils/Button";
-import Login from "./Login";
+import React from 'react';
+import ButtonOne from '../utils/Button';
+import Login from './Login';
 
 const RegisterLogin = () => {
   return (
-    <div className="register-login-container">
-      <div className="register-login-left">
-        <h1 className="register-header">Naujas klientas?</h1>
-        <div className="register-button">
+    <div className="register-login container-form">
+      <div className="register-login__left">
+        <h2 className="register-login__header">Naujas klientas?</h2>
+        <div className="register-login__button">
           <ButtonOne
             type="default"
             title="Sukurti paskyrą"
             linkTo="registruotis"
             addStyles={{
-              margin: "10px 0 0 0"
+              margin: '10px 0 0 0'
             }}
           />
         </div>
       </div>
-      <div className="register-login-right">
-        <h1 className="login-hrader">Esamas klientas</h1>
+      <div className="register-login__right">
+        <h2 className="register-login__header">Esamas klientas</h2>
         <Login />
       </div>
     </div>

@@ -1,0 +1,33 @@
+.footer {
+  color: #fff;
+  background-color: #3e444c;
+  height: 150px;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  &.footer-container {
+    display: flex;
+    .logo {
+      font-family: 'Pacifico', cursive;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    .footer-wrapper {
+      width: 80%;
+      .contact-info {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .tag {
+          display: flex;
+          .contact {
+            padding-left: 15px;
+          }
+        }
+      }
+    }
+  }
+}

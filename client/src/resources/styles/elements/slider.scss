@@ -1,0 +1,14 @@
+.slider {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    justify-content: center;
+
+    width: 700px;
+    .tag-title {
+      margin-bottom: 20px;
+      color: #fff;
+    }
+  }
+}

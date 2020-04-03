@@ -19,9 +19,9 @@ const FormField = ({ formdata, change, id }) => {
     switch (formdata.element) {
       case 'input':
         formTemplate = (
-          <div className="form-block">
+          <div className="input-field">
             {formdata.showlabel ? (
-              <div className="label_inputs">{formdata.config.label}</div>
+              <div className="label-inputs">{formdata.config.label}</div>
             ) : null}
 
             <input
@@ -37,16 +37,16 @@ const FormField = ({ formdata, change, id }) => {
 
       case 'select':
         formTemplate = (
-          <div className="form-block">
+          <div className="input-field">
             {formdata.showlabel ? (
-              <div className="label_inputs">{formdata.config.label}</div>
+              <div className="label-inputs">{formdata.config.label}</div>
             ) : null}
             <select
               value={formdata.value}
               onBlur={event => change({ event, id, blur: true })}
               onChange={event => change({ event, id })}
             >
-              <option value="">Select one</option>
+              <option value="">Pasirinkite</option>
               {formdata.config.options.map(item => (
                 <option key={item.key} value={item.key}>
                   {item.value}
@@ -60,9 +60,9 @@ const FormField = ({ formdata, change, id }) => {
 
       case 'textarea':
         formTemplate = (
-          <div className="form-block">
+          <div className="input-field">
             {formdata.showlabel ? (
-              <div className="label_inputs">{formdata.config.label}</div>
+              <div className="label-inputs">{formdata.config.label}</div>
             ) : null}
             <textarea
               {...formdata.config}
@@ -81,7 +81,7 @@ const FormField = ({ formdata, change, id }) => {
     return formTemplate;
   };
 
-  return <div>{renderTemplate()}</div>;
+  return <div className="form-template">{renderTemplate()}</div>;
 };
 
 export default FormField;

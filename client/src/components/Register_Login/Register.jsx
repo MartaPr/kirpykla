@@ -17,7 +17,8 @@ class Register extends Component {
         config: {
           name: 'email_input',
           type: 'email',
-          placeholder: 'Įveskite el. paštą'
+          placeholder: 'Įveskite el. pašto adresą',
+          label: 'El. pašto adresas'
         },
         validation: {
           required: true,
@@ -48,7 +49,7 @@ class Register extends Component {
         config: {
           name: 'confirm_password_input',
           type: 'password',
-          placeholder: 'pakartokite slaptažodį'
+          placeholder: 'Pakartokite slaptažodį'
         },
         validation: {
           required: true,
@@ -103,49 +104,47 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="signin-wrapper">
-        <h2>Prisijungimo informacija</h2>
+      <div className="signin container-form">
+        <h2 className="signin-title">Prisijungimo informacija</h2>
         <form
-          className="register-form"
+          className="signin__register-form"
           onSubmit={event => this.submitForm(event)}
         >
-          <div className="user-email">
-            <FormField
-              id={'email'}
-              formdata={this.state.formdata.email}
-              change={element => this.updateForm(element)}
-            />
-          </div>
-          <div className="user-password">
-            <FormField
-              id={'password'}
-              formdata={this.state.formdata.password}
-              change={element => this.updateForm(element)}
-            />
-            <FormField
-              id={'confirmPassword'}
-              formdata={this.state.formdata.confirmPassword}
-              change={element => this.updateForm(element)}
-            />
-          </div>
+          <FormField
+            id={'email'}
+            formdata={this.state.formdata.email}
+            change={element => this.updateForm(element)}
+          />
+
+          <FormField
+            id={'password'}
+            formdata={this.state.formdata.password}
+            change={element => this.updateForm(element)}
+          />
+          <FormField
+            id={'confirmPassword'}
+            formdata={this.state.formdata.confirmPassword}
+            change={element => this.updateForm(element)}
+          />
+
           <div className="checkbox">
             <input type="checkbox" />
-            <div>
-              <div>
-                su privatumo <span>taisyklėmis</span>
-              </div>
-              <div>
-                ir <span>politika</span> susipažinau
-              </div>
-            </div>
+            <p className="privacy-policy">
+              Su privatumo politika ir naudojimosi taisyklėmis susipažinau ir
+              sutinku.
+            </p>
+            {/* TODO: modalai politika ir taisyklės */}
           </div>
           {this.state.formError ? (
-            <div className="error-label">
-              Nenumatyta klaida. bandykite dar kartą.
+            <div
+              className="error-label"
+              style={{ color: 'red', marginTop: '7px' }}
+            >
+              Būtina pažymėti varnelę.
             </div>
           ) : null}
           <button
-            className="button button-submit button-register"
+            className="btn btn-default"
             onSubmit={event => this.submitForm(event)}
           >
             registruotis

@@ -1,23 +1,21 @@
-import React from "react";
-import UserLayout from "../../Hoc/User";
-import MyButton from '../utils/Button'
+import React from 'react';
+import UserLayout from '../../Hoc/User';
+import MyButton from '../utils/Button';
 
 const UserDashboard = ({ user }) => {
   return (
     <UserLayout>
       <div className="user-info-panel">
-        <div className="user-info">
-         <span>{ user.userdata.email }</span>
+        <h2 className="email-heading">El. pašto adresas:</h2>
+        <div className="user-info-panel user-info-panel__user-email">
+          {user.userdata.email}
         </div>
-        <MyButton
-          type="default"
-          title="Keisti"
-          linkTo="/user/user_profile"
-        />
+        <MyButton type="default" title="Keisti" linkTo="/user/user_profile" />
       </div>
       <div className="user-info-panel">
-        <h1>Apsilankymų istorija</h1>
+        <h2>Apsilankymų istorija</h2>
         <div className="user-product-block-wrapper">istorija</div>
+        {/* TODO: listas */}
       </div>
     </UserLayout>
   );

@@ -1,0 +1,35 @@
+.user-info {
+  display: flex;
+  &__user-left,
+  &__user-right {
+    display: flex;
+    flex-direction: column;
+    .links {
+      display: flex;
+      flex-direction: column;
+      .user-links {
+        color: #333;
+        padding-top: 20px;
+        height: 40px;
+      }
+      .user-links:hover {
+        font-size: 17px;
+        color: 000;
+        font-weight: 500;
+      }
+    }
+    .user-info-panel {
+      &__user-email {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+    }
+  }
+  &__user-left {
+    width: 40%;
+  }
+  &__user-right {
+    justify-content: flex-start;
+  }
+}
