@@ -9,49 +9,49 @@ class Header extends Component {
     isOpen: false,
     className: 'wrapper accordion-close',
     logo: {
-      name: 'Alinos studija',
+      name: 'Aouma nailcare',
       linkTo: '/',
-      public: true
+      public: true,
     },
     page: [
       {
         name: 'Naujienos',
         linkTo: '/kainynas',
-        public: true
+        public: true,
       },
       {
         name: 'Galerija',
         linkTo: '/darbu-galerija',
-        public: true
+        public: true,
       },
       {
-        name: 'Kainynas',
+        name: 'kainoraštis',
         linkTo: '/kainynas',
-        public: true
-      }
+        public: true,
+      },
     ],
     user: [
       {
         name: 'Informacija',
         linkTo: '/vartotojas/informacija',
-        public: false
+        public: false,
       },
       {
         name: 'Užsirašyti',
         linkTo: '/vartotojas/registruotis',
-        public: false
+        public: false,
       },
       {
         name: 'Prisijungti',
         linkTo: '/prisijungti',
-        public: true
+        public: true,
       },
       {
         name: 'Atsijungti',
         linkTo: '/vartotojas/atsijungti',
-        public: false
-      }
-    ]
+        public: false,
+      },
+    ],
   };
 
   handleMenuClick = () => {
@@ -59,18 +59,18 @@ class Header extends Component {
     if (isOpen) {
       this.setState({
         isOpen: false,
-        className: 'wrapper accordion-close'
+        className: 'wrapper accordion-close',
       });
     } else {
       this.setState({
         isOpen: true,
-        className: 'wrapper accordion-open'
+        className: 'wrapper accordion-open',
       });
     }
   };
 
   logOutHandler = () => {
-    this.props.dispatch(logoutUser()).then(response => {
+    this.props.dispatch(logoutUser()).then((response) => {
       if (response.payload.success) {
         this.props.history.push('/');
       }
@@ -88,10 +88,10 @@ class Header extends Component {
       </Link>
     );
 
-  showLinks = type => {
+  showLinks = (type) => {
     let list = [];
     if (this.props.user.userdata) {
-      type.forEach(item => {
+      type.forEach((item) => {
         if (!this.props.user.userdata.isAuth) {
           if (item.public === true) {
             list.push(item);
@@ -148,9 +148,9 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 

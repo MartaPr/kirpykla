@@ -6,12 +6,13 @@
     // position: relative;
 
     .header-left {
-      width: 15%;
+      width: 215px;
       &--logo {
-        font-family: 'Pacifico', cursive;
+        font-family: 'Cinzel', serif;
         text-transform: uppercase;
         display: flex;
         align-items: center;
+        font-size: 18px;
       }
     }
     .header-links {
@@ -50,6 +51,7 @@
         }
         .page-links {
           padding-right: 50px;
+          color: fff;
         }
         .log-out {
           cursor: pointer;

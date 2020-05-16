@@ -16,7 +16,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faCompass} className="icon" />
                 <div className="contact">
                   <div>Adresas</div>
-                  <div>Katinuku g. 12, Vilnius</div>
+                  <div>Kruopų g. 3, Vilnius</div>
                 </div>
               </div>
               <div className="tag">
@@ -30,7 +30,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faEnvelope} className="icon" />
                 <div className="contact">
                   <div>El. paštas</div>
-                  <div>alina@studija.lt</div>
+                  <div>aouma@studija.lt</div>
                 </div>
               </div>
             </div>

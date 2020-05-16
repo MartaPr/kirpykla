@@ -3,25 +3,25 @@ const Schema = mongoose.Schema;
 
 const productSchema = mongoose.Schema(
   {
-    category: {
+    // category: {
+    //   required: true,
+    //   type: String,
+    //   maxlength: 100000
+    // },
+    name: {
       required: true,
       type: String,
-      maxlength: 100000
-    },
-    description: {
-      required: false,
-      type: String,
-      maxlength: 100000
+      maxlength: 100000,
     },
     price: {
       required: true,
       type: Number,
-      maxlength: 255
+      maxlength: 255,
     },
     publish: {
       required: true,
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

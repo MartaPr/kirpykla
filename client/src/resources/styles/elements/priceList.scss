@@ -1,0 +1,19 @@
+.title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.priece-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .category {
+    display: flex;
+    width: 25%;
+    margin-bottom: 10px;
+    .item-category {
+      margin-right: 50px;
+      width: 165px;
+    }
+  }
+}

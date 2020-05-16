@@ -5,35 +5,35 @@ import { connect } from 'react-redux';
 const links = [
   {
     name: 'Mano paskyra',
-    linkTo: '/user/dashboard'
+    linkTo: '/user/dashboard',
   },
   {
     name: 'Mano paslaugos',
-    linkTo: '/user/paslaugos'
-  }
+    linkTo: '/user/paslaugos',
+  },
 ];
 
 const admin = [
   {
     name: 'Naujienos',
-    linkTo: '/admin/informacija'
+    linkTo: '/admin/informacija',
   },
   {
     name: 'Pridėti paslaugą',
-    linkTo: '/admin/paslaugos'
+    linkTo: '/admin/paslaugos',
   },
   {
     name: 'Galerijos',
-    linkTo: '/admin/sukurti-galerija'
+    linkTo: '/admin/sukurti-galerija',
   },
   {
     name: 'Kalendorius',
-    linkTo: '/admin/kalendorius'
-  }
+    linkTo: '/admin/kalendorius',
+  },
 ];
 
-const UserLayout = props => {
-  const generateLinks = links =>
+const UserLayout = (props) => {
+  const generateLinks = (links) =>
     links.map((item, i) => (
       <Link className="user-links" to={item.linkTo} key={i}>
         {item.name}
@@ -58,9 +58,9 @@ const UserLayout = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 

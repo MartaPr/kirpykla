@@ -2,32 +2,32 @@ import React from 'react';
 import Slider from 'react-slick';
 import ButtonOne from '../utils/Button';
 
-const HomeSlider = props => {
+const HomeSlider = (props) => {
   const slides = [
     {
-      img: 'img/img1.jpg',
+      img: 'img/elena-taranenko-wKdCfeqwwi0-unsplash.jpg',
       lineOne:
         'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
       lineTwo: 'Lorem ipsum dolor sit amet',
       linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis'
+      linkTo: '/vartotojas/registruotis',
     },
     {
-      img: 'img/img2.jpg',
+      img: 'img/frederick-medina-LW2sL5QEmyk-unsplash.jpg',
       lineOne:
         'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
       lineTwo: 'Lorem ipsum dolor sit amet',
       linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis'
+      linkTo: '/vartotojas/registruotis',
     },
     {
-      img: 'img/img3.jpg',
+      img: 'img/laura-chouette-BFPoAq_IyWI-unsplash.jpg',
       lineOne:
         'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
       lineTwo: 'Lorem ipsum dolor sit amet',
       linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis'
-    }
+      linkTo: '/vartotojas/registruotis',
+    },
   ];
 
   const settings = {
@@ -36,7 +36,7 @@ const HomeSlider = props => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false
+    arrows: false,
   };
 
   const generateSlides = () =>
@@ -46,9 +46,9 @@ const HomeSlider = props => {
             <div
               className="slider slider-image"
               style={{
-                background: `url(${item.img}) no-repeat center`,
+                background: `url(${item.img}) center no-repeat`,
                 height: '700px',
-                backgroundSize: 'auto auto'
+                backgroundSize: 'cover',
               }}
             >
               <div className="container">
