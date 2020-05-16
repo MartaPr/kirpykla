@@ -10,7 +10,8 @@ import AddProduct from './components/User/Admin/AddProducts';
 import PriceList from './components/Home/PriceList';
 // import Calendar from './components/User/Admin/Calendar'
 import addGalleryItem from './components/utils/Form/addGalleryItem';
-import Gallery from './components/Home/Gallery';
+import GalleryPage from './components/Home/GalleryPage';
+import EditProductForm from './components/User/Admin/EditProductForm';
 
 const Routes = () => {
   return (
@@ -39,7 +40,16 @@ const Routes = () => {
           component={Auth(RegisterLogin, false)}
         />
         <Route path="/kainynas" exact component={Auth(PriceList, null)} />
-        <Route path="/darbu-galerija" exact component={Auth(Gallery, null)} />
+        <Route
+          path="/darbu-galerija"
+          exact
+          component={Auth(GalleryPage, null)}
+        />
+        <Route
+          path="/admin/paslaugos/redaguoti-paslauga/:id"
+          exact
+          component={Auth(EditProductForm, true)}
+        />
 
         {/* <Route path="/kalendorius" exact component={Auth(Calendar,null)}/> */}
         <Route path="/" exact component={Auth(Home, null)} />

@@ -1,0 +1,47 @@
+@mixin icon-arrow {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve"><g><g id="arrow-drop-down" <polygon points="0,63.75 127.5,191.25 255,63.75"/> </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>');
+  background-repeat: no-repeat;
+}
+
+.create-gallery {
+  &.title {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+}
+
+.dropzone {
+  .dropzone-box {
+    .wrap {
+      margin-bottom: 35px;
+      .icon-text {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.form-template {
+  margin-bottom: 20px;
+  .input-field {
+    select {
+      height: 45px;
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 11px;
+      border-radius: 5px;
+      &:after {
+        @include icon-arrow();
+        background-size: 20px;
+      }
+    }
+    .label-inputs {
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.error-label {
+  font-size: 12px;
+  color: #ff1f1f;
+}

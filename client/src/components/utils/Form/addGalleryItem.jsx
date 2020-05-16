@@ -7,7 +7,7 @@ import {
   generateData,
   isFormValid,
   // populateOptionFields,
-  resetFields
+  resetFields,
 } from '../../utils/Form/FormActions';
 import FileUpload from '../Form/FileUpload';
 
@@ -26,15 +26,15 @@ class addGalleryItem extends Component {
           label: 'Pavadinimas',
           name: 'name_input',
           type: 'text',
-          placeholder: 'Įveskite pavadinimą'
+          placeholder: 'Įveskite pavadinimą',
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
         validationMessage: '',
-        showlabel: true
+        showlabel: true,
       },
 
       publish: {
@@ -45,55 +45,55 @@ class addGalleryItem extends Component {
           name: 'publish_input',
           options: [
             { key: true, value: 'Rodyti' },
-            { key: false, value: 'Paslėpti' }
-          ]
+            { key: false, value: 'Paslėpti' },
+          ],
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
         validationMessage: '',
-        showlabel: true
+        showlabel: true,
       },
       images: {
         value: [],
         validation: {
-          required: false
+          required: false,
         },
         valid: true,
         touched: false,
         validationMessage: '',
-        showlabel: false
-      }
-    }
+        showlabel: false,
+      },
+    },
   };
 
-  updateFields = newFormdata => {
+  updateFields = (newFormdata) => {
     this.setState({
-      formdata: newFormdata
+      formdata: newFormdata,
     });
   };
 
-  updateForm = element => {
-    const newFormdata = update(element, this.state.formdata, 'items');
+  updateForm = (element) => {
+    const newFormdata = update(element, this.state.formdata, 'gallery');
     this.setState({
       formError: false,
-      formdata: newFormdata
+      formdata: newFormdata,
     });
   };
 
   resetFieldHandler = () => {
-    const newFormData = resetFields(this.state.formdata, 'items');
+    const newFormData = resetFields(this.state.formdata, 'gallery');
 
     this.setState({
       formdata: newFormData,
-      formSuccess: true
+      formSuccess: true,
     });
     setTimeout(() => {
       this.setState(
         {
-          formSuccess: false
+          formSuccess: false,
         },
         () => {
           this.props.dispatch(clearGallery());
@@ -102,17 +102,17 @@ class addGalleryItem extends Component {
     }, 3000);
   };
 
-  submitForm = event => {
+  submitForm = (event) => {
     event.preventDefault();
 
-    let dataToSubmit = generateData(this.state.formdata, 'items');
-    let formIsValid = isFormValid(this.state.formdata, 'items');
+    let datatoSubmit = generateData(this.state.formdata, 'gallery');
+    let formIsValid = isFormValid(this.state.formdata, 'gallery');
 
-    console.log(this.props);
+    console.log('gallery', this.props);
 
     if (formIsValid) {
-      this.props.dispatch(addGallery(dataToSubmit)).then(() => {
-        if (this.props.items.addGallery.success) {
+      this.props.dispatch(addGallery(datatoSubmit)).then(() => {
+        if (this.props.gallery.addGallery.success) {
           this.resetFieldHandler();
         } else {
           this.setState({ formError: true });
@@ -120,69 +120,44 @@ class addGalleryItem extends Component {
       });
     } else {
       this.setState({
-        formError: true
+        formError: true,
       });
     }
   };
 
-  // componentDidMount() {
-  //   const formdata = this.state.formdata;
-
-  //   this.props.dispatch(getBrands()).then(response => {
-  //     const newFormData = populateOptionFields(
-  //       formdata,
-  //       this.props.products.brands,
-  //       'brand'
-  //     );
-  //     this.updateFields(newFormData);
-  //   });
-
-  //   this.props.dispatch(getWoods()).then(response => {
-  //     const newFormData = populateOptionFields(
-  //       formdata,
-  //       this.props.products.woods,
-  //       'wood'
-  //     );
-  //     this.updateFields(newFormData);
-  //   });
-  // }
-
-  imagesHandler = images => {
+  imagesHandler = (images) => {
     const newFormData = {
-      ...this.state.formdata
+      ...this.state.formdata,
     };
     newFormData['images'].value = images;
     newFormData['images'].valid = true;
 
     this.setState({
-      formdata: newFormData
+      formdata: newFormData,
     });
   };
 
   render() {
     return (
       <UserLayout>
-        <div>
-          <h1>Galerijos kūrimas</h1>
+        <div className="create-gallery">
+          <h2 className="create-gallery title">Galerijos kūrimas</h2>
 
-          <form onSubmit={event => this.submitForm(event)}>
+          <form onSubmit={(event) => this.submitForm(event)}>
             <FileUpload
-              imagesHandler={images => this.imagesHandler(images)}
+              imagesHandler={(images) => this.imagesHandler(images)}
               reset={this.state.formSuccess}
             />
-
             <FormField
               id={'name'}
               formdata={this.state.formdata.name}
-              change={element => this.updateForm(element)}
+              change={(element) => this.updateForm(element)}
             />
-
-            <div className="form_devider"></div>
 
             <FormField
               id={'publish'}
               formdata={this.state.formdata.publish}
-              change={element => this.updateForm(element)}
+              change={(element) => this.updateForm(element)}
             />
 
             {this.state.formSuccess ? (
@@ -190,9 +165,17 @@ class addGalleryItem extends Component {
             ) : null}
 
             {this.state.formError ? (
-              <div className="error_label">Patikrinkite duomenis</div>
+              <div className="error_label">
+                Patikrinkite duomenis
+                {console.log('error', this.state.formError)}
+              </div>
             ) : null}
-            <button onClick={event => this.submitForm(event)}>Pridėti</button>
+            <button
+              className="btn btn__btn-default"
+              onClick={(event) => this.submitForm(event)}
+            >
+              Pridėti
+            </button>
           </form>
         </div>
       </UserLayout>
@@ -200,9 +183,9 @@ class addGalleryItem extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    items: state.items
+    gallery: state.gallery,
   };
 };
 

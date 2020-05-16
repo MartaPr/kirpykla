@@ -16,15 +16,15 @@ class Login extends Component {
         config: {
           name: 'email_input',
           type: 'email',
-          placeholder: 'el.pastas@pavyzdys.lt'
+          placeholder: 'el.pastas@pavyzdys.lt',
         },
         validation: {
           required: true,
-          email: true
+          email: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
+        validationMessage: '',
       },
       password: {
         element: 'input',
@@ -32,45 +32,45 @@ class Login extends Component {
         config: {
           name: 'password_input',
           type: 'password',
-          placeholder: 'Įveskite slaptažodį'
+          placeholder: 'Įveskite slaptažodį',
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
-      }
-    }
+        validationMessage: '',
+      },
+    },
   };
 
-  updateForm = element => {
+  updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, 'login');
     this.setState({
       formError: false,
-      formdata: newFormdata
+      formdata: newFormdata,
     });
   };
 
-  submitForm = e => {
+  submitForm = (e) => {
     e.preventDefault();
 
     let dataToSubmit = generateData(this.state.formdata, 'login');
     let formIsValid = isFormValid(this.state.formdata, 'login');
 
     if (formIsValid) {
-      this.props.dispatch(loginUser(dataToSubmit)).then(response => {
+      this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
         if (response.payload.loginSuccess) {
           this.props.history.push('/vartotojas/informacija');
         } else {
           this.setState({
-            formError: true
+            formError: true,
           });
         }
       });
     } else {
       this.setState({
-        formError: true
+        formError: true,
       });
     }
   };
@@ -79,18 +79,18 @@ class Login extends Component {
       <div className="signin container-form">
         <form
           className="signin__register-form"
-          onSubmit={event => this.submitForm(event)}
+          onSubmit={(event) => this.submitForm(event)}
         >
           <FormField
             id={'email'}
             formdata={this.state.formdata.email}
-            change={element => this.updateForm(element)}
+            change={(element) => this.updateForm(element)}
           />
 
           <FormField
             id={'password'}
             formdata={this.state.formdata.password}
-            change={element => this.updateForm(element)}
+            change={(element) => this.updateForm(element)}
           />
 
           {this.state.formError ? (
@@ -99,8 +99,8 @@ class Login extends Component {
             </div>
           ) : null}
           <button
-            className="btn btn-default"
-            onSubmit={event => this.submitForm(event)}
+            className="btn btn__btn-default"
+            onSubmit={(event) => this.submitForm(event)}
           >
             PRISIJUNGTI
           </button>

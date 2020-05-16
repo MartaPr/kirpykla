@@ -10,4 +10,9 @@
 @import './elements/buttons';
 @import './elements/register_login';
 @import './elements/user';
-@import './elements/galleryItem.scss';
+@import './elements/gallery.scss';
+@import './elements/priceList.scss';
+@import './elements/createGallery.scss';
+@import './elements/editPraduct.scss';
+
+@import '~react-image-gallery/styles/scss/image-gallery.scss';

@@ -11,25 +11,25 @@ class Fileupload extends Component {
     super();
     this.state = {
       uploadedFiles: [],
-      uploading: false
+      uploading: false,
     };
   }
 
-  onDrop = files => {
+  onDrop = (files) => {
     this.setState({ uploading: true });
     let formData = new FormData();
     const config = {
-      header: { 'content-type': 'multipart/form-data' }
+      header: { 'content-type': 'multipart/form-data' },
     };
     formData.append('file', files[0]);
 
-    axios.post('/api/users/uploadimage', formData, config).then(response => {
-      console.log(response.data);
+    axios.post('/api/users/uploadimage', formData, config).then((response) => {
+      console.log('file upload', response.data);
 
       this.setState(
         {
           uploading: false,
-          uploadedFiles: [...this.state.uploadedFiles, response.data]
+          uploadedFiles: [...this.state.uploadedFiles, response.data],
         },
         () => {
           this.props.imagesHandler(this.state.uploadedFiles);
@@ -38,15 +38,15 @@ class Fileupload extends Component {
     });
   };
 
-  onRemove = id => {
-    axios.get(`/api/users/removeimage?public_id=${id}`).then(response => {
-      let images = this.state.uploadedFiles.filter(item => {
+  onRemove = (id) => {
+    axios.get(`/api/users/removeimage?public_id=${id}`).then((response) => {
+      let images = this.state.uploadedFiles.filter((item) => {
         return item.public_id !== id;
       });
 
       this.setState(
         {
-          uploadedFiles: images
+          uploadedFiles: images,
         },
         () => {
           this.props.imagesHandler(images);
@@ -56,7 +56,7 @@ class Fileupload extends Component {
   };
 
   showUploadedImages = () =>
-    this.state.uploadedFiles.map(item => (
+    this.state.uploadedFiles.map((item) => (
       <div
         className="dropzone_box"
         key={item.public_id}
@@ -67,8 +67,7 @@ class Fileupload extends Component {
           style={{
             background: `url(${item.url})`,
             height: '200px',
-            width: '200px',
-            backgroundSize: 'cover'
+            backgroundSize: 'cover',
           }}
         ></div>
       </div>
@@ -77,7 +76,7 @@ class Fileupload extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.reset) {
       return (state = {
-        uploadedFiles: []
+        uploadedFiles: [],
       });
     }
     return null;
@@ -87,24 +86,24 @@ class Fileupload extends Component {
     return (
       <div>
         <section>
-          <div className="dropzone clear">
+          <div className="dropzone">
             <Dropzone
-              onDrop={e => this.onDrop(e)}
+              onDrop={(e) => this.onDrop(e)}
               multiple={false}
-              className="dropzone_box"
+              className="dropzone-box"
             >
               <div className="wrap">
                 <FontAwesomeIcon icon={faPlusCircle} />
-                <span>Pagrindinė nuotrauka</span>
+                <span className="icon-text">Įkelti nuotrauką</span>
               </div>
             </Dropzone>
             {this.showUploadedImages()}
             {this.state.uploading ? (
               <div
-                className="dropzone_box"
+                className="dropzone-box"
                 style={{
                   textAlign: 'center',
-                  paddingTop: '60px'
+                  paddingTop: '60px',
                 }}
               >
                 <CircularProgress style={{ color: '#00bcd4' }} thickness={7} />
