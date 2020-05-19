@@ -3,9 +3,9 @@ import FormField from '../../utils/Form/FormField';
 import UserLayout from '../../../Hoc/User';
 import { connect } from 'react-redux';
 import {
-  addProduct,
   clearProduct,
-  getProducts,
+  updateProduct,
+  getProductById,
 } from '../../../actions/product_actions';
 import {
   update,
@@ -78,37 +78,40 @@ class EditProductForm extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(getProducts()).then((response) => {
-      const services = this.props.products.services;
+    const _id = this.props.match.params.id;
+    this.props.dispatch(getProductById(_id)).then((response) => {
+      let services = this.props.products.services;
+      this.setState({
+        services,
+      });
       const newFormData = populateFields(
         this.state.formdata,
-        this.props.products.services
+        this.state.services
       );
       this.setState({
         formdata: newFormData,
-        services,
       });
-      console.log('services,', this.state.services);
+      console.log('formdata', this.state.formdata);
     });
   }
 
-  updateFields = (newFormdata) => {
-    this.setState({
-      formdata: newFormdata,
-    });
-  };
+  // updateFields = (newFormdata) => {
+  //   this.setState({
+  //     formdata: newFormdata,
+  //   });
+  // };
 
   updateForm = (element) => {
-    const newFormdata = update(element, this.state.formdata, 'products');
+    const newFormdata = update(element, this.state.formdata, 'update_product');
     this.setState({
       formError: false,
       formdata: newFormdata,
     });
-    console.log('element', element);
+    console.log('update form', newFormdata);
   };
 
   resetFieldHandler = () => {
-    const newFormData = resetFields(this.state.formdata, 'products');
+    const newFormData = resetFields(this.state.formdata, 'update_product');
 
     this.setState({
       formdata: newFormData,
@@ -129,17 +132,20 @@ class EditProductForm extends Component {
   submitForm = (event) => {
     event.preventDefault();
 
-    let datatoSubmit = generateData(this.state.formdata, 'products');
-    let formIsValid = isFormValid(this.state.formdata, 'products');
+    let datatoSubmit = generateData(this.state.formdata, 'update_product');
+    let formIsValid = isFormValid(this.state.formdata, 'update_product');
 
+    console.log('datatoSubmit', datatoSubmit);
     if (formIsValid) {
-      this.props.dispatch(addProduct(datatoSubmit)).then(() => {
-        if (this.props.products.addProduct.success) {
-          this.resetFieldHandler();
-        } else {
-          this.setState({ formError: true });
-        }
-      });
+      this.props
+        .dispatch(updateProduct(datatoSubmit, this.props.match.params.id))
+        .then(() => {
+          if (this.props.products.updateProduct.success) {
+            this.setState({ formSuccess: true });
+          } else {
+            this.setState({ formError: true });
+          }
+        });
     } else {
       this.setState({
         formError: true,
@@ -175,7 +181,9 @@ class EditProductForm extends Component {
               />
 
               {this.state.formSuccess ? (
-                <div className="form-success">Paslauga sėkmingai sukurta</div>
+                <div className="form-success">
+                  Paslauga sėkmingai atnaujinta
+                </div>
               ) : null}
 
               {this.state.formError ? (
@@ -186,7 +194,7 @@ class EditProductForm extends Component {
                 className="btn btn__btn-default"
                 onClick={(event) => this.submitForm(event)}
               >
-                Išsaugoti
+                Atnaujinti
               </button>
             </form>
           </div>

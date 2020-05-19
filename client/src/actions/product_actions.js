@@ -5,6 +5,7 @@ import {
   GET_PRODUCT,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
+  GET_PRODUCT_BY_ID,
 } from './types';
 
 import { PRODUCT_SERVER } from '../components/utils/misc';
@@ -20,6 +21,17 @@ export function getProducts() {
   };
 }
 
+export function getProductById(id) {
+  const request = axios
+    .get(`${PRODUCT_SERVER}/service/${id}`)
+    .then((response) => response.data);
+
+  return {
+    type: GET_PRODUCT_BY_ID,
+    payload: request,
+  };
+}
+
 export function addProduct(datatoSubmit) {
   const request = axios
     .post(`${PRODUCT_SERVER}/service`, datatoSubmit)
@@ -31,12 +43,25 @@ export function addProduct(datatoSubmit) {
   };
 }
 
-export function updateProduct(dataToSubmit) {
+// export function updateProduct(dataToSubmit, id) {
+//   const request = axios
+//     .patch(`${PRODUCT_SERVER}/service/${id}`, dataToSubmit)
+//     .then((response) => response.data)
+//     .catch((err) => {
+//       return false;
+//     });
+
+//   return {
+//     type: UPDATE_PRODUCT,
+//     payload: request,
+//   };
+// }
+
+export function updateProduct(dataToSubmit, id) {
   const request = axios
-    .patch(`${PRODUCT_SERVER}/update_service/`, dataToSubmit)
-    .then((response) => response.data)
-    .catch((err) => {
-      return false;
+    .patch(`${PRODUCT_SERVER}/service/${id}`, dataToSubmit)
+    .then((response) => {
+      return response.data;
     });
 
   return {

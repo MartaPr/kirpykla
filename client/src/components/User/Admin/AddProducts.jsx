@@ -79,14 +79,6 @@ class AddProduct extends Component {
   };
 
   componentDidMount() {
-    // this.props.dispatch(getProducts()).then((response) => {
-    //   let services = this.props.products.services;
-
-    //   this.setState({
-    //     services,
-    //   });
-    //   console.log('services state', this.state.services);
-    // });
     this.getServices();
   }
 
@@ -152,7 +144,7 @@ class AddProduct extends Component {
       this.setState({
         services,
       });
-      console.log('services state', this.state.services);
+      console.log('services from props', services);
     });
   };
 

@@ -8,6 +8,7 @@ const multer = require('multer');
 const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
+const ObjectId = require('mongodb').ObjectID;
 
 const app = express();
 const mongoose = require('mongoose');
@@ -153,41 +154,42 @@ app.get('/api/product/service', (req, res) => {
   });
 });
 
+//get product by ID
+app.get('/api/product/service/:id', auth, admin, (req, res) => {
+  Product.findById(req.params.id)
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
 app.delete('/api/product/service/:id', auth, admin, (req, res) => {
   Product.findOneAndRemove({ _id: req.params.id }).then((data) => {
     res.send(data);
   });
 });
 
-// app.post('/api/product/service/update_service', auth, (req, res) => {
+// TODO: update
+
+// app.patch('/api/product/service/:id', auth, admin, (req, res) => {
 //   Product.findOneAndUpdate(
-//     { _id: req.body._id },
-//     { $set: req.body },
+//     req.params.id,
+//     req.params,
 //     { new: true },
 //     (err, doc) => {
-//       if (err) return res.json({ success: false, err });
-//       return res.status(200).send({
+//       if (err) return res.status(400).send(err);
+//       res.json({
 //         success: true,
+//         doc,
 //       });
 //     }
 //   );
 // });
 
-// TODO: update
-
-app.patch(auth, (req, res) => {
-  Product.findByIdAndUpdate(
-    req.body._id,
-    req.body,
-    { new: true },
-    (err, doc) => {
-      if (err) return res.status(400).send(err);
-      res.json({
-        success: true,
-        doc,
-      });
-    }
-  );
+app.patch('/api/product/service/:id', auth, admin, (req, res) => {
+  let updateObject = req.body; // {last_name : "smith", age: 44}
+  let id = req.params.id;
+  Product.update({ _id: ObjectId(id) }, { $set: updateObject })
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
 });
 
 // USERS
