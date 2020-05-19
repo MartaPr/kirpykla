@@ -7,7 +7,6 @@
   color: #fff;
   a {
     text-transform: uppercase;
-    padding-top: 5px;
     margin-left: 0;
     display: table;
     color: #fff;
@@ -21,10 +20,19 @@
     height: 50px;
     font-size: 16px;
     margin-top: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
   &__btn-small {
     width: 90px;
     height: 32px;
     font-size: 11px;
+  }
+  &--green {
+    background: #136e2e;
+  }
+  &--red {
+    background: #a82027;
   }
 }

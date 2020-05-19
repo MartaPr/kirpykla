@@ -8,11 +8,17 @@ import {
   isFormValid,
   resetFields,
 } from '../../utils/Form/FormActions';
-import { addProduct, clearProduct } from '../../../actions/product_actions';
+import {
+  addProduct,
+  getProducts,
+  clearProduct,
+  deleteProduct,
+} from '../../../actions/product_actions';
 import { connect } from 'react-redux';
 
 class AddProduct extends Component {
   state = {
+    services: [],
     formError: false,
     formSuccess: false,
     formdata: {
@@ -72,6 +78,18 @@ class AddProduct extends Component {
     },
   };
 
+  componentDidMount() {
+    // this.props.dispatch(getProducts()).then((response) => {
+    //   let services = this.props.products.services;
+
+    //   this.setState({
+    //     services,
+    //   });
+    //   console.log('services state', this.state.services);
+    // });
+    this.getServices();
+  }
+
   updateFields = (newFormdata) => {
     this.setState({
       formdata: newFormdata,
@@ -116,6 +134,7 @@ class AddProduct extends Component {
       this.props.dispatch(addProduct(datatoSubmit)).then(() => {
         if (this.props.products.addProduct.success) {
           this.resetFieldHandler();
+          this.getServices();
         } else {
           this.setState({ formError: true });
         }
@@ -125,6 +144,22 @@ class AddProduct extends Component {
         formError: true,
       });
     }
+  };
+
+  getServices = () => {
+    this.props.dispatch(getProducts()).then((response) => {
+      let services = this.props.products.services;
+      this.setState({
+        services,
+      });
+      console.log('services state', this.state.services);
+    });
+  };
+
+  deleteService = (id) => {
+    this.props.dispatch(deleteProduct(id)).then((response) => {
+      this.getServices();
+    });
   };
 
   render() {
@@ -163,7 +198,7 @@ class AddProduct extends Component {
               ) : null}
 
               <button
-                className="button button-submit button-register"
+                className="btn btn__btn-default"
                 onClick={(event) => this.submitForm(event)}
               >
                 Išsaugoti
@@ -173,7 +208,10 @@ class AddProduct extends Component {
           <div>
             <h2>Paslaugų sąrašas</h2>
             {/* new component */}
-            <EditProduct />
+            <EditProduct
+              services={this.state.services}
+              deleteProduct={this.deleteService}
+            />
           </div>
         </UserLayout>
       </div>

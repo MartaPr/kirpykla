@@ -34,7 +34,6 @@ const { admin } = require('./middleware/admin');
 // // Gallery items
 
 app.post('/api/galleries/images', (req, res) => {
-  let limit = req.body.limit ? parseInt(req.body.limit) : 16;
   let skip = parseInt(req.body.skip);
   let findArgs = {};
 
@@ -42,24 +41,12 @@ app.post('/api/galleries/images', (req, res) => {
 
   Gallery.find(findArgs)
     .skip(skip)
-    .limit(limit)
     .exec((err, item) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({
         size: item.length,
         item,
       });
-    });
-});
-
-app.get('/api/galleries/images', (req, res) => {
-  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
-
-  Product.find()
-    .limit(limit)
-    .exec((err, items) => {
-      if (err) return res.status(400).send(err);
-      res.send(items);
     });
 });
 
@@ -150,7 +137,6 @@ app.get('/api/users/removeimage', auth, admin, (req, res) => {
 
 app.post('/api/product/service', auth, admin, (req, res) => {
   const product = new Product(req.body);
-
   product.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
@@ -167,19 +153,38 @@ app.get('/api/product/service', (req, res) => {
   });
 });
 
-// TODO produkto trynimas. Adminkėj reiks išvest kažkokį lista su trynimo opcija
+app.delete('/api/product/service/:id', auth, admin, (req, res) => {
+  Product.findOneAndRemove({ _id: req.params.id }).then((data) => {
+    res.send(data);
+  });
+});
 
-app.post('/api/products/update_service', auth, (req, res) => {
-  Product.findOneAndUpdate(
-    { _id: req.product._id },
-    {
-      $set: req.body,
-    },
+// app.post('/api/product/service/update_service', auth, (req, res) => {
+//   Product.findOneAndUpdate(
+//     { _id: req.body._id },
+//     { $set: req.body },
+//     { new: true },
+//     (err, doc) => {
+//       if (err) return res.json({ success: false, err });
+//       return res.status(200).send({
+//         success: true,
+//       });
+//     }
+//   );
+// });
+
+// TODO: update
+
+app.patch(auth, (req, res) => {
+  Product.findByIdAndUpdate(
+    req.body._id,
+    req.body,
     { new: true },
     (err, doc) => {
-      if (err) return res.json({ success: false, err });
-      return res.status(200).send({
+      if (err) return res.status(400).send(err);
+      res.json({
         success: true,
+        doc,
       });
     }
   );

@@ -7,17 +7,14 @@ import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Fileupload extends Component {
-  constructor() {
-    super();
-    this.state = {
-      uploadedFiles: [],
-      uploading: false,
-    };
-  }
+  state = {
+    uploadedFiles: [],
+    uploading: false,
+  };
 
   onDrop = (files) => {
     this.setState({ uploading: true });
-    let formData = new FormData();
+    const formData = new FormData();
     const config = {
       header: { 'content-type': 'multipart/form-data' },
     };

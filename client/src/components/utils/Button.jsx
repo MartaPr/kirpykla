@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ButtonOne = props => {
+const ButtonOne = (props) => {
   const buttons = () => {
     let template = '';
     switch (props.type) {
@@ -19,7 +19,7 @@ const ButtonOne = props => {
     return template;
   };
 
-  return <div className="btn btn-default">{buttons()}</div>;
+  return <div className={props.className}>{buttons()}</div>;
 };
 
 export default ButtonOne;

@@ -60,7 +60,7 @@ const HomeSlider = (props) => {
                       type="default"
                       title={item.linkTitle}
                       linkTo={item.linkTo}
-                      className="btn-link"
+                      className="btn btn__btn-default"
                     />
                   </div>
                 </div>

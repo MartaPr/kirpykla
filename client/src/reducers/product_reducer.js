@@ -3,6 +3,7 @@ import {
   CLEAR_PRODUCT,
   GET_PRODUCT,
   UPDATE_PRODUCT,
+  DELETE_PRODUCT,
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -26,6 +27,11 @@ export default function(state = {}, action) {
       return {
         ...state,
         updateProduct: action.payload,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        deleted: action.payload,
       };
     default:
       return state;

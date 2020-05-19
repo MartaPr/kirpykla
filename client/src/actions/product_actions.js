@@ -4,6 +4,7 @@ import {
   CLEAR_PRODUCT,
   GET_PRODUCT,
   UPDATE_PRODUCT,
+  DELETE_PRODUCT,
 } from './types';
 
 import { PRODUCT_SERVER } from '../components/utils/misc';
@@ -12,7 +13,6 @@ export function getProducts() {
   const request = axios
     .get(`${PRODUCT_SERVER}/service`)
     .then((response) => response.data);
-  console.log('get products', request);
 
   return {
     type: GET_PRODUCT,
@@ -33,13 +33,28 @@ export function addProduct(datatoSubmit) {
 
 export function updateProduct(dataToSubmit) {
   const request = axios
-    .post(`${PRODUCT_SERVER}/update_service`, dataToSubmit)
-    .then((response) => {
-      return response.data;
+    .patch(`${PRODUCT_SERVER}/update_service/`, dataToSubmit)
+    .then((response) => response.data)
+    .catch((err) => {
+      return false;
     });
 
   return {
     type: UPDATE_PRODUCT,
+    payload: request,
+  };
+}
+
+export function deleteProduct(_id) {
+  const request = axios
+    .delete(`${PRODUCT_SERVER}/service/${_id}`)
+    .then((response) => response.data)
+    .catch((err) => {
+      return false;
+    });
+
+  return {
+    type: DELETE_PRODUCT,
     payload: request,
   };
 }
