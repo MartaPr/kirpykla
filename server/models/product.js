@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 
 const productSchema = mongoose.Schema(
   {
-    // category: {
-    //   required: true,
-    //   type: String,
-    //   maxlength: 100000
-    // },
     name: {
       required: true,
       type: String,

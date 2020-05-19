@@ -4,11 +4,17 @@ import {
   GET_PRODUCT,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
+  GET_PRODUCT_BY_ID,
 } from '../actions/types';
 
 export default function(state = {}, action) {
   switch (action.type) {
     case GET_PRODUCT:
+      return {
+        ...state,
+        services: action.payload,
+      };
+    case GET_PRODUCT_BY_ID:
       return {
         ...state,
         services: action.payload,
