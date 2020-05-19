@@ -7,12 +7,12 @@ export default function(ComposedClass, reload, adminRoute = null) {
   class AuthenticationCheck extends Component {
     _isMounted = false;
     state = {
-      loading: true
+      loading: true,
     };
 
-    componentWillMount() {
+    componentDidMount() {
       this._isMounted = true;
-      this.props.dispatch(auth()).then(response => {
+      this.props.dispatch(auth()).then((response) => {
         let user = this.props.user.userdata;
 
         if (!user.isAuth) {
@@ -47,7 +47,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '15%'
+              marginTop: '15%',
             }}
           >
             <CircularProgress style={{ color: '#2196F3' }} thickness={7} />
@@ -63,9 +63,9 @@ export default function(ComposedClass, reload, adminRoute = null) {
     }
   }
 
-  const mapStateToProps = state => {
+  const mapStateToProps = (state) => {
     return {
-      user: state.user
+      user: state.user,
     };
   };
 

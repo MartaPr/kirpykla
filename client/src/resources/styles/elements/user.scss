@@ -4,6 +4,7 @@
   &__user-right {
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
     .links {
       display: flex;
       flex-direction: column;
@@ -31,5 +32,6 @@
   }
   &__user-right {
     justify-content: flex-start;
+    width: 100%;
   }
 }

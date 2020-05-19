@@ -31,156 +31,64 @@ const { Gallery } = require('./models/gallery');
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
 
-// /api/gallery/items
+// // Gallery items
 
-// app.post('/api/product/services', (req, res) => {
-//   let order = req.body.order ? req.body.order : 'desc';
-//   let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
-//   let limit = req.body.limit ? parseInt(req.body.limit) : 100;
-//   let skip = parseInt(req.body.skip);
-//   let findArgs = {};
-
-//   for (let key in req.body.filters) {
-//     if (req.body.filters[key].length > 0) {
-//       if (key === 'price') {
-//         findArgs[key] = {
-//           $gte: req.body.filters[key][0],
-//           $lte: req.body.filters[key][1]
-//         };
-//       } else {
-//         findArgs[key] = req.body.filters[key];
-//       }
-//     }
-//   }
-
-//   findArgs['publish'] = true;
-
-//   Product.find(findArgs)
-//     .sort([[sortBy, order]])
-//     .skip(skip)
-//     .limit(limit)
-//     .exec((err, articles) => {
-//       if (err) return res.status(400).send(err);
-//       res.status(200).json({
-//         size: articles.length,
-//         articles
-//       });
-//     });
-// });
-
-app.post('/api/product/services', (req, res) => {
-  let order = req.body.order ? req.body.order : 'desc';
-  // let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
-  let limit = req.body.limit ? parseInt(req.body.limit) : 12;
+app.post('/api/galleries/images', (req, res) => {
   let skip = parseInt(req.body.skip);
   let findArgs = {};
 
   findArgs['publish'] = true;
 
-  Product.find(findArgs)
-    // .sort([[sortBy, order]])
+  Gallery.find(findArgs)
     .skip(skip)
-    .limit(limit)
-    .exec((err, articles) => {
+    .exec((err, item) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({
-        size: articles.length,
-        articles
+        size: item.length,
+        item,
       });
     });
 });
 
-app.get('/api/product/services', (req, res) => {
-  let order = req.query.order ? req.query.order : 'asc';
-  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
-
-  find()
-    .populate('service')
-    .sort([[sortBy, order]])
-    .limit(limit)
-    .exec((err, services) => {
-      if (err) return res.status(400).send(err);
-      res.send(services);
-    });
+app.get('/api/galleries/items', (req, res) => {
+  Gallery.find({}, (err, item) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(item);
+  });
 });
 
-app.get('/api/product/services_by_id', (req, res) => {
-  let type = req.query.type;
-  let items = req.query.id;
+app.post('/api/galleries/item', auth, admin, (req, res) => {
+  const gallery = new Gallery(req.body);
 
-  if (type === 'array') {
-    let ids = req.query.id.split(',');
-    items = [];
-    items = ids.map(item => {
-      return mongoose.Types.ObjectId(item);
-    });
-  }
-
-  Product.find({ _id: { $in: items } })
-    .populate('service')
-    .exec((err, docs) => {
-      return res.status(200).send(docs);
-    });
-});
-
-// app.post('/api/product/services', auth, admin, (req, res) => {
-//   const product = new Product(req.body);
-
-//   product.save((err, doc) => {
-//     if (err) return res.json({ success: false, err });
-//     res.status(200).json({
-//       success: true,
-//       article: doc
-//     });
-//   });
-// });
-
-//////////////////////////////
-
-// paslaugos. Kirpimas, dažymas, kirpimas + dažymas
-
-app.post('/api/product/service', auth, admin, (req, res) => {
-  const product = new Product(req.body);
-
-  product.save((err, doc) => {
+  gallery.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      article: doc
+      article: doc,
     });
   });
 });
-
-app.get('/api/product/service', (req, res) => {
-  Product.find({}, (err, service) => {
-    if (err) return res.status(400).send(err);
-    res.status(200).send(service);
-  });
-});
-
-// TODO produkto trynimas. Adminkėj reiks išvest kažkokį lista su trynimo opcija
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET
+  api_secret: process.env.CLOUD_API_SECRET,
+  transformations: { width: 220, height: 140, crop: 'fill' },
 });
 
-// STORAGE MULTER CONFIG
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}_${file.originalname}`);
-  }
+  },
 });
 
 const upload = multer({ storage: storage }).single('file');
 
 app.post('/api/users/uploadfile', auth, admin, (req, res) => {
-  upload(req, res, err => {
+  upload(req, res, (err) => {
     if (err) {
       return res.json({ success: false, err });
     }
@@ -200,6 +108,88 @@ app.get('/api/users/download/:id', auth, admin, (req, res) => {
   res.download(file);
 });
 
+app.post('/api/users/uploadimage', auth, admin, formidable(), (req, res) => {
+  cloudinary.uploader.upload(
+    req.files.file.path,
+    (result) => {
+      res.status(200).send({
+        public_id: result.public_id,
+        url: result.url,
+      });
+    },
+    {
+      public_id: `${Date.now()}`,
+      resource_type: 'auto',
+    }
+  );
+});
+
+app.get('/api/users/removeimage', auth, admin, (req, res) => {
+  let image_id = req.query.public_id;
+
+  cloudinary.uploader.destroy(image_id, (error, result) => {
+    if (error) return res.json({ succes: false, error });
+    res.status(200).send('ok');
+  });
+});
+
+// paslaugos. Kirpimas, dažymas, kirpimas + dažymas
+
+app.post('/api/product/service', auth, admin, (req, res) => {
+  const product = new Product(req.body);
+  product.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({
+      success: true,
+      article: doc,
+    });
+  });
+});
+
+app.get('/api/product/service', (req, res) => {
+  Product.find({}, (err, service) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(service);
+  });
+});
+
+app.delete('/api/product/service/:id', auth, admin, (req, res) => {
+  Product.findOneAndRemove({ _id: req.params.id }).then((data) => {
+    res.send(data);
+  });
+});
+
+// app.post('/api/product/service/update_service', auth, (req, res) => {
+//   Product.findOneAndUpdate(
+//     { _id: req.body._id },
+//     { $set: req.body },
+//     { new: true },
+//     (err, doc) => {
+//       if (err) return res.json({ success: false, err });
+//       return res.status(200).send({
+//         success: true,
+//       });
+//     }
+//   );
+// });
+
+// TODO: update
+
+app.patch(auth, (req, res) => {
+  Product.findByIdAndUpdate(
+    req.body._id,
+    req.body,
+    { new: true },
+    (err, doc) => {
+      if (err) return res.status(400).send(err);
+      res.json({
+        success: true,
+        doc,
+      });
+    }
+  );
+});
+
 // USERS
 
 app.get('/api/users/auth', auth, (req, res) => {
@@ -211,7 +201,7 @@ app.get('/api/users/auth', auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     cart: req.user.cart,
-    history: req.user.history
+    history: req.user.history,
   });
 });
 
@@ -220,7 +210,7 @@ app.post('/api/users/register', (req, res) => {
   user.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
-      success: true
+      success: true,
     });
   });
 });
@@ -236,12 +226,9 @@ app.post('/api/users/login', (req, res) => {
 
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
-        res
-          .cookie('x_auth', user.token)
-          .status(200)
-          .json({
-            loginSuccess: true
-          });
+        res.cookie('x_auth', user.token).status(200).json({
+          loginSuccess: true,
+        });
       });
     });
   });
@@ -251,51 +238,8 @@ app.get('/api/users/logout', auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, doc) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({
-      success: true
+      success: true,
     });
-  });
-});
-
-// Gallery items
-
-app.get('/api/gallery/items', (req, res) => {
-  let order = req.query.order ? req.query.order : 'asc';
-  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
-
-  find()
-    .populate('item')
-    .sort([[sortBy, order]])
-    .limit(limit)
-    .exec((err, items) => {
-      if (err) return res.status(400).send(err);
-      res.send(items);
-    });
-});
-
-app.post('/api/users/uploadimage', auth, admin, formidable(), (req, res) => {
-  cloudinary.uploader.upload(
-    req.files.file.path,
-    result => {
-      console.log(result);
-      res.status(200).send({
-        public_id: result.public_id,
-        url: result.url
-      });
-    },
-    {
-      public_id: `${Date.now()}`,
-      resource_type: 'auto'
-    }
-  );
-});
-
-app.get('/api/users/removeimage', auth, admin, (req, res) => {
-  let image_id = req.query.public_id;
-
-  cloudinary.uploader.destroy(image_id, (error, result) => {
-    if (error) return res.json({ succes: false, error });
-    res.status(200).send('ok');
   });
 });
 

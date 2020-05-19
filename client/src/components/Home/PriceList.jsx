@@ -4,65 +4,45 @@ import { getProducts } from '../../actions/product_actions';
 
 class PriceList extends Component {
   state = {
-    services: []
+    services: [],
   };
 
-  componentWillMount() {
-    this.props.dispatch(getProducts()).then(response => {
+  componentDidMount() {
+    this.props.dispatch(getProducts()).then((response) => {
       let services = this.props.products.services;
 
       this.setState({
-        services
+        services,
       });
+      console.log('services state', this.state.services);
     });
   }
 
-  showCatOne = () =>
-    this.state.services.map((item, i) => {
-      if (item.category === 'Kirpimas') {
-        return (
-          <div key={i} className="category">
-            <div>{item.description}</div>
-            <div>{item.price}</div>
+  showPrices = () =>
+    this.state.services.map((item) => {
+      return (
+        <div key={item._id} className="category">
+          <div className="item-category">{item.name}</div>
+          <div className="item-price">
+            nuo <span style={{ fontWeight: '800' }}> {item.price}€ </span>{' '}
           </div>
-        );
-      } else {
-        return null;
-      }
-    });
-
-  showCatTwo = () =>
-    this.state.services.map((item, i) => {
-      if (item.category === 'Kirpimas + dažymas') {
-        return (
-          <div key={i} className="category">
-            <div>{item.description}</div>
-            <div>{item.price}</div>
-          </div>
-        );
-      } else {
-        return null;
-      }
+        </div>
+      );
     });
 
   render() {
     return (
-      <div>
-        <div>
-          <h2>Krpimas</h2>
-          {this.showCatOne()}
-
-          <h2>Krpimas + dažymas</h2>
-          {this.showCatTwo()}
-        </div>
+      <div className="container">
+        <h2 className="title">Paslaugų kainos</h2>
+        <div className="priece-list">{this.showPrices()}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
   };
 };
 

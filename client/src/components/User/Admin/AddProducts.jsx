@@ -1,57 +1,43 @@
 import React, { Component } from 'react';
 import UserLayout from '../../../Hoc/User';
 import FormField from '../../utils/Form/FormField';
+import EditProduct from './EditProduct';
 import {
   update,
   generateData,
   isFormValid,
-  resetFields
+  resetFields,
 } from '../../utils/Form/FormActions';
-import { addProduct, clearProduct } from '../../../actions/product_actions';
+import {
+  addProduct,
+  getProducts,
+  clearProduct,
+  deleteProduct,
+} from '../../../actions/product_actions';
 import { connect } from 'react-redux';
 
 class AddProduct extends Component {
   state = {
+    services: [],
     formError: false,
     formSuccess: false,
     formdata: {
-      category: {
-        element: 'select',
-        value: '',
-        config: {
-          label: 'Pasirinkite paslaugą',
-          name: 'service_input',
-          options: [
-            { key: 'Kirpimas', value: 'Kirpimas' },
-            { key: 'Dažymas', value: 'Dažymas' },
-            { key: 'Kirpimas + dažymas', value: 'Kirpimas + dažymas' },
-            { key: 'Proginė šukuosena', value: 'Proginė šukuosena' }
-          ]
-        },
-        validation: {
-          required: true
-        },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-        showlabel: true
-      },
-      description: {
-        element: 'textarea',
+      name: {
+        element: 'input',
         value: '',
         config: {
           label: '',
-          name: 'description_input',
+          name: 'name_input',
           type: 'text',
-          placeholder: ''
+          placeholder: 'Įveskite paslaugą',
         },
         validation: {
-          required: false
+          required: false,
         },
         valid: false,
         touched: false,
         validationMessage: '',
-        showlabel: true
+        showlabel: true,
       },
       price: {
         element: 'input',
@@ -60,15 +46,15 @@ class AddProduct extends Component {
           label: 'Paslaugos kaina',
           name: 'price_input',
           type: 'number',
-          placeholder: 'Įveskite kainą'
+          placeholder: 'Įveskite kainą',
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
         validationMessage: '',
-        showlabel: true
+        showlabel: true,
       },
       publish: {
         element: 'select',
@@ -78,32 +64,45 @@ class AddProduct extends Component {
           name: 'publish_input',
           options: [
             { key: true, value: 'Skelbti' },
-            { key: false, value: 'Paslėpti' }
-          ]
+            { key: false, value: 'Paslėpti' },
+          ],
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
         validationMessage: '',
-        showlabel: true
-      }
-    }
+        showlabel: true,
+      },
+    },
   };
 
-  updateFields = newFormdata => {
+  componentDidMount() {
+    // this.props.dispatch(getProducts()).then((response) => {
+    //   let services = this.props.products.services;
+
+    //   this.setState({
+    //     services,
+    //   });
+    //   console.log('services state', this.state.services);
+    // });
+    this.getServices();
+  }
+
+  updateFields = (newFormdata) => {
     this.setState({
-      formdata: newFormdata
+      formdata: newFormdata,
     });
   };
 
-  updateForm = element => {
+  updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, 'products');
     this.setState({
       formError: false,
-      formdata: newFormdata
+      formdata: newFormdata,
     });
+    console.log('element', element);
   };
 
   resetFieldHandler = () => {
@@ -111,12 +110,12 @@ class AddProduct extends Component {
 
     this.setState({
       formdata: newFormData,
-      formSuccess: true
+      formSuccess: true,
     });
     setTimeout(() => {
       this.setState(
         {
-          formSuccess: false
+          formSuccess: false,
         },
         () => {
           this.props.dispatch(clearProduct());
@@ -125,27 +124,42 @@ class AddProduct extends Component {
     }, 3000);
   };
 
-  submitForm = event => {
+  submitForm = (event) => {
     event.preventDefault();
 
     let datatoSubmit = generateData(this.state.formdata, 'products');
     let formIsValid = isFormValid(this.state.formdata, 'products');
 
-    console.log(this.props);
-
     if (formIsValid) {
       this.props.dispatch(addProduct(datatoSubmit)).then(() => {
         if (this.props.products.addProduct.success) {
           this.resetFieldHandler();
+          this.getServices();
         } else {
           this.setState({ formError: true });
         }
       });
     } else {
       this.setState({
-        formError: true
+        formError: true,
       });
     }
+  };
+
+  getServices = () => {
+    this.props.dispatch(getProducts()).then((response) => {
+      let services = this.props.products.services;
+      this.setState({
+        services,
+      });
+      console.log('services state', this.state.services);
+    });
+  };
+
+  deleteService = (id) => {
+    this.props.dispatch(deleteProduct(id)).then((response) => {
+      this.getServices();
+    });
   };
 
   render() {
@@ -153,24 +167,18 @@ class AddProduct extends Component {
       <div>
         <UserLayout>
           <div>
-            <h1>Pridėti paslaugą</h1>
-            <form onSubmit={event => this.submitForm(event)}>
+            <h2>Pridėti paslaugą</h2>
+            <form onSubmit={(event) => this.submitForm(event)}>
               <FormField
-                id={'category'}
-                formdata={this.state.formdata.category}
-                change={element => this.updateForm(element)}
-              />
-
-              <FormField
-                id={'description'}
-                formdata={this.state.formdata.description}
-                change={element => this.updateForm(element)}
+                id={'name'}
+                formdata={this.state.formdata.name}
+                change={(element) => this.updateForm(element)}
               />
 
               <FormField
                 id={'price'}
                 formdata={this.state.formdata.price}
-                change={element => this.updateForm(element)}
+                change={(element) => this.updateForm(element)}
               />
 
               <div className="form-devider" />
@@ -178,7 +186,7 @@ class AddProduct extends Component {
               <FormField
                 id={'publish'}
                 formdata={this.state.formdata.publish}
-                change={element => this.updateForm(element)}
+                change={(element) => this.updateForm(element)}
               />
 
               {this.state.formSuccess ? (
@@ -190,12 +198,20 @@ class AddProduct extends Component {
               ) : null}
 
               <button
-                className="button button-submit button-register"
-                onClick={event => this.submitForm(event)}
+                className="btn btn__btn-default"
+                onClick={(event) => this.submitForm(event)}
               >
                 Išsaugoti
               </button>
             </form>
+          </div>
+          <div>
+            <h2>Paslaugų sąrašas</h2>
+            {/* new component */}
+            <EditProduct
+              services={this.state.services}
+              deleteProduct={this.deleteService}
+            />
           </div>
         </UserLayout>
       </div>
@@ -203,9 +219,9 @@ class AddProduct extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
   };
 };
 

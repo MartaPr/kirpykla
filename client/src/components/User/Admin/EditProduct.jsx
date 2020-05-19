@@ -1,29 +1,9 @@
-import React, { Component } from 'react';
-
-import { connect } from 'react-redux';
+import React from 'react';
 import ButtonOne from '../../utils/Button';
 
-class EditProduct extends Component {
-  state = {
-    services: [],
-  };
-
-  componentWillMount() {
-    this.props.dispatch(getProducts()).then((response) => {
-      let services = this.props.products.services;
-
-      this.setState({
-        services,
-      });
-    });
-  }
-
-  renderFields = () => {
-    return <div>form fields</div>;
-  };
-
-  showPrices = () =>
-    this.state.services.map((item) => {
+const EditProduct = (props) => {
+  const showPrices = () =>
+    props.services.map((item) => {
       return (
         <div key={item._id} className="product">
           <div className="product product--list-block">
@@ -35,29 +15,27 @@ class EditProduct extends Component {
             <div className="product product--buttons">
               <ButtonOne
                 type="default"
-                className="btn btn__btn-small"
+                className="btn btn__btn-small btn--green"
                 title="Redaguoti"
                 linkTo={`/admin/paslaugos/redaguoti-paslauga/${item._id}`}
               />
-              <button className="btn btn__btn-small">Trinti</button>
+
+              <button
+                className="btn btn__btn-small btn--red"
+                onClick={() => props.deleteProduct(item._id)}
+              >
+                Trinti
+              </button>
             </div>
           </div>
         </div>
       );
     });
-
-  render() {
-    return (
-      <div className="container">
-        <div>{this.showPrices()}</div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-  };
+  return (
+    <div className="container">
+      <div>{showPrices()}</div>
+    </div>
+  );
 };
-export default connect(mapStateToProps)(EditProduct);
+
+export default EditProduct;
