@@ -4,6 +4,7 @@ import {
   REMOVE_GALLERY_ITEM,
   GET_GALLERY_ITEM,
   GET_GALLERY,
+  DELETE_GALLERY,
 } from './types';
 
 import { GALLERY_SERVER } from '../components/utils/misc';
@@ -48,6 +49,20 @@ export function getGalleryItems(skip, limit) {
   console.log('res items', request);
   return {
     type: GET_GALLERY_ITEM,
+    payload: request,
+  };
+}
+
+export function deleteGallery(_id) {
+  const request = axios
+    .delete(`${GALLERY_SERVER}/item/${_id}`)
+    .then((response) => response.data)
+    .catch((err) => {
+      return false;
+    });
+
+  return {
+    type: DELETE_GALLERY,
     payload: request,
   };
 }

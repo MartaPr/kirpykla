@@ -3,9 +3,10 @@ import {
   REMOVE_GALLERY_ITEM,
   GET_GALLERY_ITEM,
   GET_GALLERY,
+  DELETE_GALLERY,
 } from '../actions/types';
 
-export default function (state = {}, action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case GET_GALLERY:
       return {
@@ -28,6 +29,11 @@ export default function (state = {}, action) {
       return {
         ...state,
         clearGallery: action.payload,
+      };
+    case DELETE_GALLERY:
+      return {
+        ...state,
+        deleted: action.payload,
       };
     default:
       return state;

@@ -9,7 +9,7 @@ import Auth from './Hoc/Auth';
 import AddProduct from './components/User/Admin/AddProducts';
 import PriceList from './components/Home/PriceList';
 // import Calendar from './components/User/Admin/Calendar'
-import addGalleryItem from './components/utils/Form/addGalleryItem';
+import AddGalleryItem from './components/User/Admin/AddGalleryItem';
 import GalleryPage from './components/Home/GalleryPage';
 import EditProductForm from './components/User/Admin/EditProductForm';
 
@@ -30,7 +30,7 @@ const Routes = () => {
         <Route
           path="/admin/sukurti-galerija"
           exact
-          component={Auth(addGalleryItem, true)}
+          component={Auth(AddGalleryItem, true)}
         />
 
         <Route path="/registruotis" exact component={Auth(Register, false)} />

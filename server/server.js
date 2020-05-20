@@ -70,6 +70,12 @@ app.post('/api/galleries/item', auth, admin, (req, res) => {
   });
 });
 
+app.delete('/api/galleries/item/:id', auth, admin, (req, res) => {
+  Gallery.findOneAndRemove({ _id: req.params.id }).then((data) => {
+    res.send(data);
+  });
+});
+
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -166,23 +172,6 @@ app.delete('/api/product/service/:id', auth, admin, (req, res) => {
     res.send(data);
   });
 });
-
-// TODO: update
-
-// app.patch('/api/product/service/:id', auth, admin, (req, res) => {
-//   Product.findOneAndUpdate(
-//     req.params.id,
-//     req.params,
-//     { new: true },
-//     (err, doc) => {
-//       if (err) return res.status(400).send(err);
-//       res.json({
-//         success: true,
-//         doc,
-//       });
-//     }
-//   );
-// });
 
 app.patch('/api/product/service/:id', auth, admin, (req, res) => {
   let updateObject = req.body; // {last_name : "smith", age: 44}

@@ -4,6 +4,7 @@
 }
 
 .create-gallery {
+  margin-bottom: 50px;
   &.title {
     text-align: left;
     margin-bottom: 20px;
@@ -43,5 +44,10 @@
 
 .error-label {
   font-size: 12px;
-  color: #ff1f1f;
+  color: #a82027;
+}
+
+.form-success {
+  font-size: 12px;
+  color: #136e2e;
 }

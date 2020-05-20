@@ -172,8 +172,6 @@ class AddProduct extends Component {
               change={(element) => this.updateForm(element)}
             />
 
-            <div className="form-devider" />
-
             <FormField
               id={'publish'}
               formdata={this.state.formdata.publish}

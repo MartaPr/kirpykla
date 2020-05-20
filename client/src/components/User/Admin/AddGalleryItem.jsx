@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserLayout from '../../../Hoc/User';
 
 import FormField from '../../utils/Form/FormField';
+import EditGalleryItem from './EditGalleryItem';
 import {
   update,
   generateData,
@@ -9,13 +10,19 @@ import {
   // populateOptionFields,
   resetFields,
 } from '../../utils/Form/FormActions';
-import FileUpload from '../Form/FileUpload';
+import FileUpload from './FileUpload';
 
 import { connect } from 'react-redux';
-import { addGallery, clearGallery } from '../../../actions/gallery_actions';
+import {
+  addGallery,
+  clearGallery,
+  getGalleryItems,
+  deleteGallery,
+} from '../../../actions/gallery_actions';
 
-class addGalleryItem extends Component {
+class AddGalleryItem extends Component {
   state = {
+    gallery: [],
     formError: false,
     formSuccess: false,
     formdata: {
@@ -68,6 +75,10 @@ class addGalleryItem extends Component {
       },
     },
   };
+
+  componentDidMount() {
+    this.getGallery();
+  }
 
   updateFields = (newFormdata) => {
     this.setState({
@@ -137,10 +148,27 @@ class addGalleryItem extends Component {
     });
   };
 
+  getGallery = () => {
+    this.props.dispatch(getGalleryItems()).then((response) => {
+      const gallery = this.props.gallery.toGallery;
+
+      this.setState({
+        gallery,
+      });
+      console.log('gallery items', this.state.gallery);
+    });
+  };
+
+  deleteGalleryItem = (id) => {
+    this.props.dispatch(deleteGallery(id)).then((response) => {
+      this.getGallery();
+    });
+  };
+
   render() {
     return (
       <UserLayout>
-        <div className="create-gallery">
+        <div className="add-product-form">
           <h2 className="create-gallery title">Galerijos kūrimas</h2>
 
           <form onSubmit={(event) => this.submitForm(event)}>
@@ -161,11 +189,11 @@ class addGalleryItem extends Component {
             />
 
             {this.state.formSuccess ? (
-              <div className="form_success">Success</div>
+              <div className="form-success">Sėkmingai pridėta</div>
             ) : null}
 
             {this.state.formError ? (
-              <div className="error_label">
+              <div className="error-label">
                 Patikrinkite duomenis
                 {console.log('error', this.state.formError)}
               </div>
@@ -178,6 +206,12 @@ class addGalleryItem extends Component {
             </button>
           </form>
         </div>
+        <div className="gallery-items-list">
+          <EditGalleryItem
+            gallery={this.state.gallery}
+            deleteGalleryItem={this.deleteGalleryItem}
+          />
+        </div>
       </UserLayout>
     );
   }
@@ -189,4 +223,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(addGalleryItem);
+export default connect(mapStateToProps)(AddGalleryItem);

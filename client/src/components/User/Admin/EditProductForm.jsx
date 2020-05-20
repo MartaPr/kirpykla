@@ -93,12 +93,6 @@ class EditProductForm extends Component {
     });
   }
 
-  // updateFields = (newFormdata) => {
-  //   this.setState({
-  //     formdata: newFormdata,
-  //   });
-  // };
-
   updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, 'update_product');
     this.setState({
