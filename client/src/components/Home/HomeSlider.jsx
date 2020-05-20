@@ -42,7 +42,7 @@ const HomeSlider = (props) => {
   const generateSlides = () =>
     slides
       ? slides.map((item, i) => (
-          <div key={i}>
+          <div className="home-slider" key={i}>
             <div
               className="slider slider-image"
               style={{

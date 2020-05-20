@@ -3,7 +3,6 @@ import FormField from '../../utils/Form/FormField';
 import UserLayout from '../../../Hoc/User';
 import { connect } from 'react-redux';
 import {
-  clearProduct,
   updateProduct,
   getProductById,
 } from '../../../actions/product_actions';
@@ -11,7 +10,6 @@ import {
   update,
   generateData,
   isFormValid,
-  resetFields,
   populateFields,
 } from '../../utils/Form/FormActions';
 
@@ -110,25 +108,6 @@ class EditProductForm extends Component {
     console.log('update form', newFormdata);
   };
 
-  resetFieldHandler = () => {
-    const newFormData = resetFields(this.state.formdata, 'update_product');
-
-    this.setState({
-      formdata: newFormData,
-      formSuccess: true,
-    });
-    setTimeout(() => {
-      this.setState(
-        {
-          formSuccess: false,
-        },
-        () => {
-          this.props.dispatch(clearProduct());
-        }
-      );
-    }, 3000);
-  };
-
   submitForm = (event) => {
     event.preventDefault();
 
@@ -140,8 +119,8 @@ class EditProductForm extends Component {
       this.props
         .dispatch(updateProduct(datatoSubmit, this.props.match.params.id))
         .then(() => {
-          if (this.props.products.updateProduct.success) {
-            this.setState({ formSuccess: true });
+          if (this.props.products.updateProduct) {
+            this.setState({ formError: false, formSuccess: true });
           } else {
             this.setState({ formError: true });
           }
@@ -155,51 +134,45 @@ class EditProductForm extends Component {
 
   render() {
     return (
-      <div>
-        <UserLayout>
-          <div>
-            <h2>Pridėti paslaugą</h2>
-            <form onSubmit={(event) => this.submitForm(event)}>
-              <FormField
-                id={'name'}
-                formdata={this.state.formdata.name}
-                change={(element) => this.updateForm(element)}
-              />
+      <UserLayout>
+        <h2>Pridėti paslaugą</h2>
+        <form onSubmit={(event) => this.submitForm(event)}>
+          <FormField
+            id={'name'}
+            formdata={this.state.formdata.name}
+            change={(element) => this.updateForm(element)}
+          />
 
-              <FormField
-                id={'price'}
-                formdata={this.state.formdata.price}
-                change={(element) => this.updateForm(element)}
-              />
+          <FormField
+            id={'price'}
+            formdata={this.state.formdata.price}
+            change={(element) => this.updateForm(element)}
+          />
 
-              <div className="form-devider" />
+          <div className="form-devider" />
 
-              <FormField
-                id={'publish'}
-                formdata={this.state.formdata.publish}
-                change={(element) => this.updateForm(element)}
-              />
+          <FormField
+            id={'publish'}
+            formdata={this.state.formdata.publish}
+            change={(element) => this.updateForm(element)}
+          />
 
-              {this.state.formSuccess ? (
-                <div className="form-success">
-                  Paslauga sėkmingai atnaujinta
-                </div>
-              ) : null}
+          {this.state.formSuccess ? (
+            <div className="form-success">Paslauga sėkmingai atnaujinta</div>
+          ) : null}
 
-              {this.state.formError ? (
-                <div className="error-label">Klaidingi duomenys</div>
-              ) : null}
+          {this.state.formError ? (
+            <div className="error-label">Klaidingi duomenys</div>
+          ) : null}
 
-              <button
-                className="btn btn__btn-default"
-                onClick={(event) => this.submitForm(event)}
-              >
-                Atnaujinti
-              </button>
-            </form>
-          </div>
-        </UserLayout>
-      </div>
+          <button
+            className="btn btn__btn-default"
+            onClick={(event) => this.submitForm(event)}
+          >
+            Atnaujinti
+          </button>
+        </form>
+      </UserLayout>
     );
   }
 }

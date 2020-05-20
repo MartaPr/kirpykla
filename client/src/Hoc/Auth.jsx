@@ -55,7 +55,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
         );
       } else {
         return (
-          <div>
+          <div className="composed-class">
             <ComposedClass {...this.props} user={this.props.user} />
           </div>
         );

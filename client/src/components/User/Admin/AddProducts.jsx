@@ -156,57 +156,55 @@ class AddProduct extends Component {
 
   render() {
     return (
-      <div>
-        <UserLayout>
-          <div>
-            <h2>Pridėti paslaugą</h2>
-            <form onSubmit={(event) => this.submitForm(event)}>
-              <FormField
-                id={'name'}
-                formdata={this.state.formdata.name}
-                change={(element) => this.updateForm(element)}
-              />
-
-              <FormField
-                id={'price'}
-                formdata={this.state.formdata.price}
-                change={(element) => this.updateForm(element)}
-              />
-
-              <div className="form-devider" />
-
-              <FormField
-                id={'publish'}
-                formdata={this.state.formdata.publish}
-                change={(element) => this.updateForm(element)}
-              />
-
-              {this.state.formSuccess ? (
-                <div className="form-success">Paslauga sėkmingai sukurta</div>
-              ) : null}
-
-              {this.state.formError ? (
-                <div className="error-label">Klaidingi duomenys</div>
-              ) : null}
-
-              <button
-                className="btn btn__btn-default"
-                onClick={(event) => this.submitForm(event)}
-              >
-                Išsaugoti
-              </button>
-            </form>
-          </div>
-          <div>
-            <h2>Paslaugų sąrašas</h2>
-            {/* new component */}
-            <EditProduct
-              services={this.state.services}
-              deleteProduct={this.deleteService}
+      <UserLayout>
+        <div className="add-product-form">
+          <h2>Pridėti paslaugą</h2>
+          <form onSubmit={(event) => this.submitForm(event)}>
+            <FormField
+              id={'name'}
+              formdata={this.state.formdata.name}
+              change={(element) => this.updateForm(element)}
             />
-          </div>
-        </UserLayout>
-      </div>
+
+            <FormField
+              id={'price'}
+              formdata={this.state.formdata.price}
+              change={(element) => this.updateForm(element)}
+            />
+
+            <div className="form-devider" />
+
+            <FormField
+              id={'publish'}
+              formdata={this.state.formdata.publish}
+              change={(element) => this.updateForm(element)}
+            />
+
+            {this.state.formSuccess ? (
+              <div className="form-success">Paslauga sėkmingai sukurta</div>
+            ) : null}
+
+            {this.state.formError ? (
+              <div className="error-label">Klaidingi duomenys</div>
+            ) : null}
+
+            <button
+              className="btn btn__btn-default"
+              onClick={(event) => this.submitForm(event)}
+            >
+              Išsaugoti
+            </button>
+          </form>
+        </div>
+        <div className="services-list">
+          <h2>Paslaugų sąrašas</h2>
+          {/* new component */}
+          <EditProduct
+            services={this.state.services}
+            deleteProduct={this.deleteService}
+          />
+        </div>
+      </UserLayout>
     );
   }
 }

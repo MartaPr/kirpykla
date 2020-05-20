@@ -365,4 +365,14 @@ input[type='checkbox'] {
 
 h2 {
   margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.page-main {
+  min-height: 100%;
+  position: relative;
+}
+
+.page_wrapper {
+  padding-bottom: 150px;
 }

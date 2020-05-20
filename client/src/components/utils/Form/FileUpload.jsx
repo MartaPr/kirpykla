@@ -63,7 +63,8 @@ class Fileupload extends Component {
           className="wrap"
           style={{
             background: `url(${item.url})`,
-            height: '200px',
+            height: '300px',
+            width: '300px',
             backgroundSize: 'cover',
           }}
         ></div>
@@ -81,34 +82,32 @@ class Fileupload extends Component {
 
   render() {
     return (
-      <div>
-        <section>
-          <div className="dropzone">
-            <Dropzone
-              onDrop={(e) => this.onDrop(e)}
-              multiple={false}
+      <section>
+        <div className="dropzone">
+          <Dropzone
+            onDrop={(e) => this.onDrop(e)}
+            multiple={false}
+            className="dropzone-box"
+          >
+            <div className="wrap">
+              <FontAwesomeIcon icon={faPlusCircle} />
+              <span className="icon-text">Įkelti nuotrauką</span>
+            </div>
+          </Dropzone>
+          {this.showUploadedImages()}
+          {this.state.uploading ? (
+            <div
               className="dropzone-box"
+              style={{
+                textAlign: 'center',
+                paddingTop: '60px',
+              }}
             >
-              <div className="wrap">
-                <FontAwesomeIcon icon={faPlusCircle} />
-                <span className="icon-text">Įkelti nuotrauką</span>
-              </div>
-            </Dropzone>
-            {this.showUploadedImages()}
-            {this.state.uploading ? (
-              <div
-                className="dropzone-box"
-                style={{
-                  textAlign: 'center',
-                  paddingTop: '60px',
-                }}
-              >
-                <CircularProgress style={{ color: '#00bcd4' }} thickness={7} />
-              </div>
-            ) : null}
-          </div>
-        </section>
-      </div>
+              <CircularProgress style={{ color: '#00bcd4' }} thickness={7} />
+            </div>
+          ) : null}
+        </div>
+      </section>
     );
   }
 }

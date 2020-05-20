@@ -31,11 +31,7 @@ const EditProduct = (props) => {
         </div>
       );
     });
-  return (
-    <div className="container">
-      <div>{showPrices()}</div>
-    </div>
-  );
+  return <div className="container">{showPrices()}</div>;
 };
 
 export default EditProduct;
