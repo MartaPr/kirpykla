@@ -5,8 +5,6 @@ import ImageGallery from 'react-image-gallery';
 
 class GalleryPage extends Component {
   state = {
-    limit: 16,
-    skip: 0,
     gallery: [],
   };
 

@@ -15,15 +15,15 @@ const links = [
 
 const admin = [
   {
-    name: 'Naujienos',
+    name: 'Pagrindinio puslapio valdymas',
     linkTo: '/admin/informacija',
   },
   {
-    name: 'Pridėti paslaugą',
+    name: 'Paslaugų valdymas',
     linkTo: '/admin/paslaugos',
   },
   {
-    name: 'Galerijos',
+    name: 'Galerijos valdymas',
     linkTo: '/admin/sukurti-galerija',
   },
   {

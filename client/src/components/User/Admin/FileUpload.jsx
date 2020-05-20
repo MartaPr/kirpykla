@@ -55,17 +55,21 @@ class Fileupload extends Component {
   showUploadedImages = () =>
     this.state.uploadedFiles.map((item) => (
       <div
-        className="dropzone_box"
+        className="dropzone-box"
+        style={{
+          height: 'auto',
+          width: '280px',
+        }}
         key={item.public_id}
         onClick={() => this.onRemove(item.public_id)}
       >
         <div
           className="wrap"
           style={{
-            background: `url(${item.url})`,
-            height: '300px',
-            width: '300px',
+            background: `url(${item.url}) center no-repeat`,
             backgroundSize: 'cover',
+            width: '100%',
+            height: '280px',
           }}
         ></div>
       </div>

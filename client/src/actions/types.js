@@ -14,3 +14,4 @@ export const ADD_GALLERY_ITEM = 'add_gallery_item';
 export const REMOVE_GALLERY_ITEM = 'remove_gallery_item';
 export const GET_GALLERY_ITEM = 'get_gallery_item';
 export const GET_GALLERY = 'get_gallery';
+export const DELETE_GALLERY = 'delete_gallery';
