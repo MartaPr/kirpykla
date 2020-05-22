@@ -24,7 +24,7 @@ class PriceList extends Component {
         <div key={item._id} className="category">
           <div className="item-category">{item.name}</div>
           <div className="item-price">
-            nuo <span style={{ fontWeight: '800' }}> {item.price}€ </span>{' '}
+            nuo <span style={{ fontWeight: '800' }}> {item.price}€ </span>
           </div>
         </div>
       );
@@ -34,7 +34,10 @@ class PriceList extends Component {
     return (
       <div className="container">
         <h2 className="title">Paslaugų kainos</h2>
-        <div className="priece-list">{this.showPrices()}</div>
+        <div className="priece-list">
+          {this.showPrices()}
+          {console.log('show prices')}
+        </div>
       </div>
     );
   }

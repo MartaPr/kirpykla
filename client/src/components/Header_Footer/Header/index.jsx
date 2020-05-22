@@ -25,7 +25,7 @@ class Header extends Component {
         public: true,
       },
       {
-        name: 'kainoraštis',
+        name: 'Paslaugos',
         linkTo: '/kainynas',
         public: true,
       },

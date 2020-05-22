@@ -9,11 +9,12 @@ const RegisterLogin = () => {
         <h2 className="register-login__header">Naujas klientas?</h2>
         <div className="register-login__button">
           <ButtonOne
+            className="btn btn__btn-default"
             type="default"
             title="Sukurti paskyrą"
             linkTo="registruotis"
             addStyles={{
-              margin: '10px 0 0 0'
+              margin: '10px 0 0 0',
             }}
           />
         </div>

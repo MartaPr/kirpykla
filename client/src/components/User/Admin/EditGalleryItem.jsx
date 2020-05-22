@@ -1,31 +1,6 @@
 import React from 'react';
 
 const EditGalleryItem = (props) => {
-  // const showGalleryItems = () => {
-  //   const imageArr = props.gallery.map((item) => {
-  //     return item.images;
-  //   });
-
-  //   const imgUrl = imageArr.map((item, i) => {
-  //     return (
-  //       <div key={i} className="img-wrapper">
-  //         <div
-  //           className="image"
-  //           style={{
-  //             background: `url(${item[0].url}) center no-repeat`,
-  //             backgroundSize: 'cover',
-  //           }}
-  //         ></div>
-  //         <button className="btn btn__btn-small btn--red remove-img">
-  //           Trinti
-  //         </button>
-  //       </div>
-  //     );
-  //   });
-
-  //   return imgUrl;
-  // };
-
   const showGalleryItems = () => {
     const renderCards = props.gallery.map((item) => {
       return (
