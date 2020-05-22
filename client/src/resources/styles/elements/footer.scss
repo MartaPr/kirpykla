@@ -7,19 +7,17 @@
   width: 100%;
   height: 150px; /* Height of the footer */
 
-  &.footer-container {
+  .footer-container {
     display: flex;
-    .logo {
-      font-family: 'Pacifico', cursive;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-    }
+    height: 150px;
     .footer-wrapper {
-      width: 80%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       .contact-info {
+        width: 100%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         .tag {
           display: flex;

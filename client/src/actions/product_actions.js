@@ -43,20 +43,6 @@ export function addProduct(datatoSubmit) {
   };
 }
 
-// export function updateProduct(dataToSubmit, id) {
-//   const request = axios
-//     .patch(`${PRODUCT_SERVER}/service/${id}`, dataToSubmit)
-//     .then((response) => response.data)
-//     .catch((err) => {
-//       return false;
-//     });
-
-//   return {
-//     type: UPDATE_PRODUCT,
-//     payload: request,
-//   };
-// }
-
 export function updateProduct(dataToSubmit, id) {
   const request = axios
     .patch(`${PRODUCT_SERVER}/service/${id}`, dataToSubmit)

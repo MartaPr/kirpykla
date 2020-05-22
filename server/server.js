@@ -26,6 +26,7 @@ app.use(cookieParser());
 const { User } = require('./models/user');
 const { Product } = require('./models/product');
 const { Gallery } = require('./models/gallery');
+const { Contacts } = require('./models/contacts');
 
 // Middlewares
 
@@ -174,9 +175,36 @@ app.delete('/api/product/service/:id', auth, admin, (req, res) => {
 });
 
 app.patch('/api/product/service/:id', auth, admin, (req, res) => {
-  let updateObject = req.body; // {last_name : "smith", age: 44}
+  let updateObject = req.body;
   let id = req.params.id;
   Product.update({ _id: ObjectId(id) }, { $set: updateObject })
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+//contacts
+
+app.post('/api/contacts', auth, admin, (req, res) => {
+  const contacts = new Contacts(req.body);
+  contacts.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({
+      success: true,
+      article: doc,
+    });
+  });
+});
+
+app.get('/api/contacts', (req, res) => {
+  Contacts.find({}, (err, service) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(service);
+  });
+});
+
+app.patch('/api/contacts/', auth, admin, (req, res) => {
+  let updateObject = req.body;
+  Contacts.update({ $set: updateObject })
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json('Error: ' + err));
 });

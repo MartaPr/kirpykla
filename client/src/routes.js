@@ -12,6 +12,7 @@ import PriceList from './components/Home/PriceList';
 import AddGalleryItem from './components/User/Admin/AddGalleryItem';
 import GalleryPage from './components/Home/GalleryPage';
 import EditProductForm from './components/User/Admin/EditProductForm';
+import ContactInfo from './components/User/Admin/ContactInfo';
 
 const Routes = () => {
   return (
@@ -51,7 +52,11 @@ const Routes = () => {
           component={Auth(EditProductForm, true)}
         />
 
-        {/* <Route path="/kalendorius" exact component={Auth(Calendar,null)}/> */}
+        <Route
+          path="/admin/kontaktai"
+          exact
+          component={Auth(ContactInfo, true)}
+        />
         <Route path="/" exact component={Auth(Home, null)} />
       </Switch>
     </Layout>

@@ -27,8 +27,8 @@ const admin = [
     linkTo: '/admin/sukurti-galerija',
   },
   {
-    name: 'Kalendorius',
-    linkTo: '/admin/kalendorius',
+    name: 'Kontaktai',
+    linkTo: '/admin/kontaktai',
   },
 ];
 
