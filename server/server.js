@@ -152,7 +152,7 @@ app.post('/api/slider/images', (req, res) => {
 
   findArgs['publish'] = true;
 
-  Gallery.find(findArgs)
+  Slider.find(findArgs)
     .skip(skip)
     .exec((err, item) => {
       if (err) return res.status(400).send(err);
@@ -190,7 +190,7 @@ app.get('/api/slider/items/:id', auth, admin, (req, res) => {
 app.patch('/api/slider/items/:id', auth, admin, (req, res) => {
   let updateObject = req.body;
   let id = req.params.id;
-  Slider.update({ _id: ObjectId(id) }, { $set: updateObject })
+  Slider.updateOne({ _id: ObjectId(id) }, { $set: updateObject })
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json('Error: ' + err));
 });
@@ -237,7 +237,7 @@ app.delete('/api/product/service/:id', auth, admin, (req, res) => {
 app.patch('/api/product/service/:id', auth, admin, (req, res) => {
   let updateObject = req.body;
   let id = req.params.id;
-  Product.update({ _id: ObjectId(id) }, { $set: updateObject })
+  Product.updateOne({ _id: ObjectId(id) }, { $set: updateObject })
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json('Error: ' + err));
 });
@@ -264,7 +264,7 @@ app.get('/api/contacts', (req, res) => {
 
 app.patch('/api/contacts/', auth, admin, (req, res) => {
   let updateObject = req.body;
-  Contacts.update({ $set: updateObject })
+  Contacts.updateOne({ $set: updateObject })
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json('Error: ' + err));
 });

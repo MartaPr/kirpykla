@@ -8,7 +8,6 @@ import Userdashboard from './components/User';
 import Auth from './Hoc/Auth';
 import AddProduct from './components/User/Admin/AddProducts';
 import PriceList from './components/Home/PriceList';
-// import Calendar from './components/User/Admin/Calendar'
 import AddGalleryItem from './components/User/Admin/AddGalleryItem';
 import GalleryPage from './components/Home/GalleryPage';
 import EditProductForm from './components/User/Admin/EditProductForm';
