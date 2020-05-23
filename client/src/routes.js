@@ -13,6 +13,7 @@ import AddGalleryItem from './components/User/Admin/AddGalleryItem';
 import GalleryPage from './components/Home/GalleryPage';
 import EditProductForm from './components/User/Admin/EditProductForm';
 import ContactInfo from './components/User/Admin/ContactInfo';
+import AddSliderItem from './components/User/Admin/AddSliderItem';
 
 const Routes = () => {
   return (
@@ -24,16 +25,25 @@ const Routes = () => {
           component={Auth(Userdashboard, true)}
         />
         <Route
+          path="/admin/pagrindinis-puslapis"
+          exact
+          component={Auth(AddSliderItem, true)}
+        />
+        <Route
           path="/admin/paslaugos"
           exact
           component={Auth(AddProduct, true)}
+        />
+        <Route
+          path="/admin/paslaugos/redaguoti-paslauga/:id"
+          exact
+          component={Auth(EditProductForm, true)}
         />
         <Route
           path="/admin/sukurti-galerija"
           exact
           component={Auth(AddGalleryItem, true)}
         />
-
         <Route path="/registruotis" exact component={Auth(Register, false)} />
         <Route
           path="/prisijungti"
@@ -46,12 +56,6 @@ const Routes = () => {
           exact
           component={Auth(GalleryPage, null)}
         />
-        <Route
-          path="/admin/paslaugos/redaguoti-paslauga/:id"
-          exact
-          component={Auth(EditProductForm, true)}
-        />
-
         <Route
           path="/admin/kontaktai"
           exact

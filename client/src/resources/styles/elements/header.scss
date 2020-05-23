@@ -48,6 +48,7 @@
         @media screen and (max-width: $md) {
           text-align: center;
           padding: 20px;
+          flex-direction: column;
         }
         .page-links {
           padding-right: 50px;
@@ -55,6 +56,50 @@
         }
         .log-out {
           cursor: pointer;
+        }
+      }
+    }
+
+    @media screen and (max-width: $md) {
+      .invisible {
+        display: none;
+      }
+      .accordion-close {
+        right: -50%;
+        transition: all 0.2s ease-out;
+      }
+      .accordion-open {
+        right: 0px;
+        transition: all 0.2s ease-out;
+        div {
+          width: 100%;
+          text-align: right;
+          .close {
+            // position: relative;
+            // left: 312px;
+            top: 9px;
+            width: 32px;
+            height: 32px;
+            opacity: 1;
+            &::before,
+            &::after {
+              position: absolute;
+              right: 30px;
+              content: ' ';
+              height: 27px;
+              width: 2px;
+              background-color: #fff;
+            }
+            &::before {
+              transform: rotate(45deg);
+            }
+            &::after {
+              transform: rotate(-45deg);
+            }
+          }
+        }
+        li {
+          padding: 10px;
         }
       }
     }
@@ -94,44 +139,6 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         transition: 0.5s;
       }
-    }
-  }
-
-  .accordion-close {
-    right: -50%;
-  }
-
-  .accordion-open {
-    right: 0px;
-    div {
-      width: 100%;
-      text-align: right;
-      .close {
-        position: relative;
-        left: 312px;
-        top: 9px;
-        width: 32px;
-        height: 32px;
-        opacity: 1;
-        &::before,
-        &::after {
-          position: absolute;
-          left: 15px;
-          content: ' ';
-          height: 27px;
-          width: 2px;
-          background-color: #fff;
-        }
-        &::before {
-          transform: rotate(45deg);
-        }
-        &::after {
-          transform: rotate(-45deg);
-        }
-      }
-    }
-    li {
-      padding: 10px;
     }
   }
 

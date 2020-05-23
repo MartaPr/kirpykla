@@ -27,55 +27,14 @@ const { User } = require('./models/user');
 const { Product } = require('./models/product');
 const { Gallery } = require('./models/gallery');
 const { Contacts } = require('./models/contacts');
+const { Slider } = require('./models/slider');
 
 // Middlewares
 
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
 
-// // Gallery items
-
-app.post('/api/galleries/images', (req, res) => {
-  let skip = parseInt(req.body.skip);
-  let findArgs = {};
-
-  findArgs['publish'] = true;
-
-  Gallery.find(findArgs)
-    .skip(skip)
-    .exec((err, item) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).json({
-        size: item.length,
-        item,
-      });
-    });
-});
-
-app.get('/api/galleries/items', (req, res) => {
-  Gallery.find({}, (err, item) => {
-    if (err) return res.status(400).send(err);
-    res.status(200).send(item);
-  });
-});
-
-app.post('/api/galleries/item', auth, admin, (req, res) => {
-  const gallery = new Gallery(req.body);
-
-  gallery.save((err, doc) => {
-    if (err) return res.json({ success: false, err });
-    res.status(200).json({
-      success: true,
-      article: doc,
-    });
-  });
-});
-
-app.delete('/api/galleries/item/:id', auth, admin, (req, res) => {
-  Gallery.findOneAndRemove({ _id: req.params.id }).then((data) => {
-    res.send(data);
-  });
-});
+// UPLOAD FILES
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -141,7 +100,108 @@ app.get('/api/users/removeimage', auth, admin, (req, res) => {
   });
 });
 
-// paslaugos. Kirpimas, dažymas, kirpimas + dažymas
+// Gallery items
+
+app.post('/api/galleries/images', (req, res) => {
+  let skip = parseInt(req.body.skip);
+  let findArgs = {};
+
+  findArgs['publish'] = true;
+
+  Gallery.find(findArgs)
+    .skip(skip)
+    .exec((err, item) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({
+        size: item.length,
+        item,
+      });
+    });
+});
+
+app.get('/api/galleries/items', (req, res) => {
+  Gallery.find({}, (err, item) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(item);
+  });
+});
+
+app.post('/api/galleries/item', auth, admin, (req, res) => {
+  const gallery = new Gallery(req.body);
+
+  gallery.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({
+      success: true,
+      gallery: doc,
+    });
+  });
+});
+
+app.delete('/api/galleries/item/:id', auth, admin, (req, res) => {
+  Gallery.findOneAndRemove({ _id: req.params.id }).then((data) => {
+    res.send(data);
+  });
+});
+
+// SLIDERIS
+
+app.post('/api/slider/images', (req, res) => {
+  let skip = parseInt(req.body.skip);
+  let findArgs = {};
+
+  findArgs['publish'] = true;
+
+  Gallery.find(findArgs)
+    .skip(skip)
+    .exec((err, item) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({
+        size: item.length,
+        item,
+      });
+    });
+});
+
+app.post('/api/slider/item', auth, admin, (req, res) => {
+  const slider = new Slider(req.body);
+  slider.save((err, doc) => {
+    if (err) return res.json({ success: false, err });
+    res.status(200).json({
+      success: true,
+      slider: doc,
+    });
+  });
+});
+
+app.get('/api/slider/items', (req, res) => {
+  Slider.find({}, (err, item) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(item);
+  });
+});
+
+app.get('/api/slider/items/:id', auth, admin, (req, res) => {
+  Product.findById(req.params.id)
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+app.patch('/api/slider/items/:id', auth, admin, (req, res) => {
+  let updateObject = req.body;
+  let id = req.params.id;
+  Slider.update({ _id: ObjectId(id) }, { $set: updateObject })
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+app.delete('/api/slider/item/:id', auth, admin, (req, res) => {
+  Slider.findOneAndRemove({ _id: req.params.id }).then((data) => {
+    res.send(data);
+  });
+});
+
+// PASLAUGOS
 
 app.post('/api/product/service', auth, admin, (req, res) => {
   const product = new Product(req.body);
@@ -149,7 +209,7 @@ app.post('/api/product/service', auth, admin, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      article: doc,
+      product: doc,
     });
   });
 });
@@ -190,7 +250,7 @@ app.post('/api/contacts', auth, admin, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      article: doc,
+      contacts: doc,
     });
   });
 });

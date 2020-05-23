@@ -100,7 +100,7 @@ class ContactInfo extends Component {
     if (this.state.contacts.length === 0) {
       if (formIsValid) {
         this.props.dispatch(addContacts(datatoSubmit)).then(() => {
-          if (this.props.contacts.addContacts.success) {
+          if (this.props.contacts.addContacts) {
             this.getContactInfo();
             this.setState({ formSuccess: true });
           } else {

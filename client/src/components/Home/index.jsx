@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import HomeSlider from './HomeSlider';
+
+import MainPage from './MainPage';
 
 class Home extends Component {
   render() {
-    return <HomeSlider />;
+    return <MainPage />;
   }
 }
 

@@ -18,7 +18,6 @@ export default function(state = {}, action) {
       return {
         ...state,
         toGallery: action.payload.item,
-        toGallerySize: action.payload.size,
       };
     case ADD_GALLERY_ITEM:
       return {

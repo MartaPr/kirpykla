@@ -19,3 +19,10 @@ export const DELETE_GALLERY = 'delete_gallery';
 export const ADD_CONTACTS = 'add_contacts';
 export const GET_CONTACTS = 'get_contacts';
 export const UPDATE_CONTACTS = 'update_contacts';
+
+export const ADD_SLIDER_ITEM = 'add_slider_item';
+export const REMOVE_SLIDER_ITEM = 'remove_gallery_item';
+export const GET_SLIDER_ITEM = 'get_gallery_item';
+export const GET_SLIDER = 'get_gallery';
+export const UPDATE_SLIDER = 'update_product';
+export const DELETE_SLIDER_ITEM = 'delete_gallery';

@@ -7,7 +7,6 @@ import {
   update,
   generateData,
   isFormValid,
-  // populateOptionFields,
   resetFields,
 } from '../../utils/Form/FormActions';
 import FileUpload from './FileUpload';

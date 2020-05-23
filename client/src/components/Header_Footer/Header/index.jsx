@@ -54,6 +54,12 @@ class Header extends Component {
     ],
   };
 
+  componentDidMount() {
+    this.setState({
+      className: 'invisible',
+    });
+  }
+
   handleMenuClick = () => {
     const { isOpen } = this.state;
     if (isOpen) {
@@ -79,11 +85,15 @@ class Header extends Component {
 
   defaultLink = (item, i) =>
     item.name === 'Atsijungti' ? (
-      <div className="log-out" key={i} onClick={() => this.logOutHandler()}>
+      <div
+        className="log-out user-links"
+        key={i}
+        onClick={() => this.logOutHandler()}
+      >
         {item.name}
       </div>
     ) : (
-      <Link className="page-links" to={item.linkTo} key={i}>
+      <Link className="user-links" to={item.linkTo} key={i}>
         {item.name}
       </Link>
     );
@@ -137,7 +147,7 @@ class Header extends Component {
               <div className="page-links-wrapper">
                 {this.showLinks(this.state.page)}
               </div>
-              <div className="user-links">
+              <div className="page-links-wrapper">
                 {this.showLinks(this.state.user)}
               </div>
             </div>

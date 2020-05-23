@@ -3,33 +3,6 @@ import Slider from 'react-slick';
 import ButtonOne from '../utils/Button';
 
 const HomeSlider = (props) => {
-  const slides = [
-    {
-      img: 'img/elena-taranenko-wKdCfeqwwi0-unsplash.jpg',
-      lineOne:
-        'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
-      lineTwo: 'Lorem ipsum dolor sit amet',
-      linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis',
-    },
-    {
-      img: 'img/frederick-medina-LW2sL5QEmyk-unsplash.jpg',
-      lineOne:
-        'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
-      lineTwo: 'Lorem ipsum dolor sit amet',
-      linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis',
-    },
-    {
-      img: 'img/laura-chouette-BFPoAq_IyWI-unsplash.jpg',
-      lineOne:
-        'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
-      lineTwo: 'Lorem ipsum dolor sit amet',
-      linkTitle: 'Užsirašyti',
-      linkTo: '/vartotojas/registruotis',
-    },
-  ];
-
   const settings = {
     dots: false,
     infinite: true,
@@ -37,38 +10,44 @@ const HomeSlider = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
-  const generateSlides = () =>
-    slides
-      ? slides.map((item, i) => (
-          <div className="home-slider" key={i}>
-            <div
-              className="slider slider-image"
-              style={{
-                background: `url(${item.img}) center no-repeat`,
-                height: '700px',
-                backgroundSize: 'cover',
-              }}
-            >
-              <div className="container">
-                <div className="slider slider-wrapper">
-                  <div className="tag-title">{item.lineOne}</div>
-                  <div className="tag-title"> {item.lineTwo} </div>
-                  <div>
-                    <ButtonOne
-                      type="default"
-                      title={item.linkTitle}
-                      linkTo={item.linkTo}
-                      className="btn btn__btn-default"
-                    />
-                  </div>
+  const generateSlides = () => {
+    return props.slides.map((item) => {
+      console.log('item img', item.image[0].url);
+      return (
+        <div className="home-slider" key={item._id}>
+          <div
+            className="slider slider-image"
+            style={{
+              background: `url(${item.image[0].url}) no-repeat center`,
+              height: '100%',
+              backgroundPosition: '50% 0%',
+              backgroundSize: 'cover',
+              height: '700px',
+            }}
+          >
+            <div className="container">
+              <div className="slider slider-wrapper">
+                <div className="tag-title">{item.title}</div>
+                <div className="tag-text"> {item.description} </div>
+                <div>
+                  <ButtonOne
+                    type="default"
+                    title="Užsirašyti"
+                    linkTo="/"
+                    className="btn btn__btn-default"
+                  />
                 </div>
               </div>
             </div>
           </div>
-        ))
-      : null;
+        </div>
+      );
+    });
+  };
 
   return (
     <div className="slider">

@@ -8,7 +8,7 @@ const ContactInfo = (props) => {
   const renderContacts = () => {
     return props.contacts.map((item) => {
       return (
-        <div className="footer-container">
+        <div key={item._id} className="footer-container">
           <div className="footer-wrapper">
             <div key={item._id} className=" contact-info">
               <div className="tag">
