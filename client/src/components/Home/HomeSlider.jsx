@@ -23,7 +23,6 @@ const HomeSlider = (props) => {
             className="slider slider-image"
             style={{
               background: `url(${item.image[0].url}) no-repeat center`,
-              height: '100%',
               backgroundPosition: '50% 0%',
               backgroundSize: 'cover',
               height: '700px',

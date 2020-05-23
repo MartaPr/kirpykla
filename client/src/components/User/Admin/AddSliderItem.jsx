@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserLayout from '../../../Hoc/User';
 import FileUpload from './FileUpload';
 import FormField from '../../utils/Form/FormField';
+import EditSliders from '../Admin/EditSliders';
 
 import {
   update,
@@ -91,9 +92,9 @@ class AddSliderItem extends Component {
     },
   };
 
-  // componentDidMount() {
-  //   this.getSlides();
-  // }
+  componentDidMount() {
+    this.getSlides();
+  }
 
   imagesHandler = (image) => {
     const newFormData = {
@@ -149,7 +150,7 @@ class AddSliderItem extends Component {
 
     if (formIsValid) {
       this.props.dispatch(addSliderItem(datatoSubmit)).then(() => {
-        if (this.props.slider.addSliderItem) {
+        if (this.props.slider) {
           this.resetFieldHandler();
           this.getSlides();
         } else {
@@ -165,11 +166,11 @@ class AddSliderItem extends Component {
 
   getSlides = () => {
     this.props.dispatch(getSliderImages()).then((response) => {
-      let slides = this.props.slides.items;
+      let slides = this.props.slider.sliderImg;
       this.setState({
         slides,
       });
-      console.log('services from props', slides);
+      console.log('slides from props', slides);
     });
   };
 
@@ -224,11 +225,11 @@ class AddSliderItem extends Component {
             </button>
           </form>
         </div>
-        <div className="gallery-items-list">
-          {/* <EditGalleryItem
-            gallery={this.state.gallery}
-            deleteGalleryItem={this.deleteGalleryItem}
-          /> */}
+        <div className="slider-items-list">
+          <EditSliders
+            slides={this.state.slides}
+            deleteSlide={this.deleteSlide}
+          />
         </div>
       </UserLayout>
     );

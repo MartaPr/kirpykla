@@ -9,12 +9,14 @@ class PriceList extends Component {
 
   componentDidMount() {
     this.props.dispatch(getProducts()).then((response) => {
-      let services = this.props.products.services;
-      console.log('services', services);
+      const products = this.props.products.services;
+      const services = products.filter((service) => service.publish === true);
+
       this.setState({
         services,
       });
-      console.log('services state', this.state.services);
+
+      console.log('services', this.state.services);
     });
   }
 

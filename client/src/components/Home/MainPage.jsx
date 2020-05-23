@@ -11,11 +11,9 @@ class MainPage extends Component {
   componentDidMount() {
     this.props.dispatch(getSlider()).then((response) => {
       const slides = this.props.slider.size;
-
       this.setState({
         slides,
       });
-      console.log('slides', this.state.slides);
     });
   }
 
