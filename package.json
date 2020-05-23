@@ -40,7 +40,7 @@
     "mongoose": "^5.4.13",
     "multer": "^1.4.1",
     "nodemon": "^1.18.10",
-    "npm": "^6.9.0",
+    "npm": "^6.13.4",
     "react-dropzone": "^10.1.5",
     "react-slick": "^0.26.1"
   },
