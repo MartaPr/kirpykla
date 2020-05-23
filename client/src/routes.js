@@ -13,6 +13,7 @@ import GalleryPage from './components/Home/GalleryPage';
 import EditProductForm from './components/User/Admin/EditProductForm';
 import ContactInfo from './components/User/Admin/ContactInfo';
 import AddSliderItem from './components/User/Admin/AddSliderItem';
+import ContactsPage from './components/Home/ContactsPage';
 
 const Routes = () => {
   return (
@@ -43,6 +44,11 @@ const Routes = () => {
           exact
           component={Auth(AddGalleryItem, true)}
         />
+        <Route
+          path="/admin/kontaktai"
+          exact
+          component={Auth(ContactInfo, true)}
+        />
         <Route path="/registruotis" exact component={Auth(Register, false)} />
         <Route
           path="/prisijungti"
@@ -55,11 +61,8 @@ const Routes = () => {
           exact
           component={Auth(GalleryPage, null)}
         />
-        <Route
-          path="/admin/kontaktai"
-          exact
-          component={Auth(ContactInfo, true)}
-        />
+        <Route path="/kontaktai" exact component={Auth(ContactsPage, null)} />
+
         <Route path="/" exact component={Auth(Home, null)} />
       </Switch>
     </Layout>
