@@ -18,8 +18,6 @@ class Footer extends Component {
     });
   }
 
-  // šitą jaučiu reikia perkelti į kitą komponentą
-
   render() {
     return (
       <footer className="footer">

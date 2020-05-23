@@ -193,9 +193,9 @@ class ContactInfo extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (props) => {
   return {
-    contacts: state.contacts,
+    contacts: props.contacts,
   };
 };
 

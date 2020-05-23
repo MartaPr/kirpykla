@@ -1,0 +1,36 @@
+.contact-page {
+  .wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+  }
+  .info {
+    .image {
+      img {
+        height: 315px;
+      }
+    }
+  }
+  .info-right {
+    iframe {
+      height: 250px;
+    }
+  }
+  .contact-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    .tag {
+      display: flex;
+      .contact {
+        padding-left: 10px;
+        a {
+          color: #333;
+        }
+      }
+    }
+    .f-icon {
+      color: #333;
+    }
+  }
+}

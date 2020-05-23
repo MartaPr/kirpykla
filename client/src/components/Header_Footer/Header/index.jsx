@@ -15,11 +15,6 @@ class Header extends Component {
     },
     page: [
       {
-        name: 'Naujienos',
-        linkTo: '/kainynas',
-        public: true,
-      },
-      {
         name: 'Galerija',
         linkTo: '/darbu-galerija',
         public: true,
@@ -27,6 +22,11 @@ class Header extends Component {
       {
         name: 'Paslaugos',
         linkTo: '/kainynas',
+        public: true,
+      },
+      {
+        name: 'Kontaktai',
+        linkTo: '/kontaktai',
         public: true,
       },
     ],
