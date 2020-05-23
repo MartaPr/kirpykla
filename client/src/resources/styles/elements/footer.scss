@@ -19,6 +19,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media screen and (max-width: $md) {
+          flex-direction: column;
+        }
         .tag {
           display: flex;
           .contact {

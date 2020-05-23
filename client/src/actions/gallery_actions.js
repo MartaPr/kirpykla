@@ -32,20 +32,13 @@ export function addGallery(datatoSubmit) {
 }
 
 export function getGalleryItems(skip, limit) {
-  const data = {
-    limit,
-    skip,
-  };
-
-  const request = axios
-    .post(`${GALLERY_SERVER}/images`, data)
-    .then((response) => {
-      let newState = [...response.data.item];
-      return {
-        size: response.data.size,
-        item: newState,
-      };
-    });
+  const request = axios.post(`${GALLERY_SERVER}/images`).then((response) => {
+    let newState = [...response.data.item];
+    return {
+      size: response.data.size,
+      item: newState,
+    };
+  });
   console.log('res items', request);
   return {
     type: GET_GALLERY_ITEM,

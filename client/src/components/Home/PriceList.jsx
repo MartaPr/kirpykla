@@ -10,7 +10,7 @@ class PriceList extends Component {
   componentDidMount() {
     this.props.dispatch(getProducts()).then((response) => {
       let services = this.props.products.services;
-
+      console.log('services', services);
       this.setState({
         services,
       });

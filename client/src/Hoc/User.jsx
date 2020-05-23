@@ -16,7 +16,7 @@ const links = [
 const admin = [
   {
     name: 'Pagrindinio puslapio valdymas',
-    linkTo: '/admin/informacija',
+    linkTo: '/admin/pagrindinis-puslapis',
   },
   {
     name: 'Paslaugų valdymas',
