@@ -37,11 +37,6 @@ class Header extends Component {
         public: false,
       },
       {
-        name: 'Užsirašyti',
-        linkTo: '/vartotojas/registruotis',
-        public: false,
-      },
-      {
         name: 'Prisijungti',
         linkTo: '/prisijungti',
         public: true,

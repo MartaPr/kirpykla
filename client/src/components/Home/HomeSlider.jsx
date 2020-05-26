@@ -36,7 +36,7 @@ const HomeSlider = (props) => {
                   <ButtonOne
                     type="default"
                     title="Užsirašyti"
-                    linkTo="/"
+                    linkTo="/kontaktai"
                     className="btn btn__btn-default"
                   />
                 </div>
