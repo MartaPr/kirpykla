@@ -20,7 +20,7 @@ const Routes = () => {
     <Layout>
       <Switch>
         <Route
-          path="/vartotojas/informacija"
+          path="/admin/informacija"
           exact
           component={Auth(Userdashboard, true)}
         />
@@ -50,11 +50,7 @@ const Routes = () => {
           component={Auth(ContactInfo, true)}
         />
         <Route path="/registruotis" exact component={Auth(Register, false)} />
-        <Route
-          path="/prisijungti"
-          exact
-          component={Auth(RegisterLogin, false)}
-        />
+        <Route path="/admin" exact component={Auth(RegisterLogin, false)} />
         <Route path="/kainynas" exact component={Auth(PriceList, null)} />
         <Route
           path="/darbu-galerija"

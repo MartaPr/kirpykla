@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const links = [
-  {
-    name: 'Mano paskyra',
-    linkTo: '/user/dashboard',
-  },
-  {
-    name: 'Mano paslaugos',
-    linkTo: '/user/paslaugos',
-  },
-];
+// const links = [
+//   {
+//     name: 'Mano paskyra',
+//     linkTo: '/user/dashboard',
+//   },
+//   {
+//     name: 'Mano paslaugos',
+//     linkTo: '/user/paslaugos',
+//   },
+// ];
 
 const admin = [
   {
@@ -35,14 +35,19 @@ const admin = [
 const UserLayout = (props) => {
   const generateLinks = (links) =>
     links.map((item, i) => (
-      <Link className="user-links" to={item.linkTo} key={i}>
+      <NavLink
+        activeClassName="is-active"
+        className="user-links"
+        to={item.linkTo}
+        key={i}
+      >
         {item.name}
-      </Link>
+      </NavLink>
     ));
   return (
     <div className="container">
       <div className="user-info">
-        <nav className="user-info user-info__user-left">
+        {/* <nav className="user-info user-info__user-left">
           <h2>Informacija</h2>
           <div className="links">{generateLinks(links)}</div>
           {props.user.userdata.isAdmin ? (
@@ -51,6 +56,10 @@ const UserLayout = (props) => {
               <div className="links">{generateLinks(admin)}</div>
             </div>
           ) : null}
+        // </nav> */}
+        <nav className="user-info user-info__user-left">
+          <h2>Puslapio informacija</h2>
+          <div className="links">{generateLinks(admin)}</div>
         </nav>
         <div className="user-info user-info__user-right">{props.children}</div>
       </div>

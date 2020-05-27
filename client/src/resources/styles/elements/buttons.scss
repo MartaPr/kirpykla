@@ -24,11 +24,17 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    @media screen and(max-width: $md) {
+      width: 100%;
+    }
   }
   &__btn-small {
     width: 90px;
     height: 32px;
     font-size: 11px;
+    @media screen and(max-width: $md) {
+      width: 49% !important;
+    }
   }
   &--green {
     background: #136e2e;

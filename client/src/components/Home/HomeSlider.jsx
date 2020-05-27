@@ -10,8 +10,8 @@ const HomeSlider = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    // autoplay: true,
+    // autoplaySpeed: 2000,
   };
 
   const generateSlides = () => {
@@ -25,20 +25,21 @@ const HomeSlider = (props) => {
               background: `url(${item.image[0].url}) no-repeat center`,
               backgroundPosition: '50% 0%',
               backgroundSize: 'cover',
-              height: '700px',
             }}
           >
             <div className="container">
               <div className="slider slider-wrapper">
-                <div className="tag-title">{item.title}</div>
-                <div className="tag-text"> {item.description} </div>
-                <div>
-                  <ButtonOne
-                    type="default"
-                    title="Užsirašyti"
-                    linkTo="/kontaktai"
-                    className="btn btn__btn-default"
-                  />
+                <div className="info-block">
+                  <div className="tag-title">{item.title}</div>
+                  <div className="tag-text"> {item.description} </div>
+                  <div className="slider-button">
+                    <ButtonOne
+                      type="default"
+                      title="Užsirašyti"
+                      linkTo="/kontaktai"
+                      className="btn btn__btn-default"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -169,10 +169,6 @@ button,
   cursor: default;
 }
 
-[type='number'] {
-  width: auto; /* Firefox 36+ */
-}
-
 [type='search'] {
   -webkit-appearance: textfield; /* Safari 8+ */
 }
@@ -349,10 +345,12 @@ video {
 
 input {
   height: 45px;
-  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 15px;
   border-radius: 5px;
+  @media screen and(max-width: $md) {
+    width: 100%;
+  }
 }
 
 input::placeholder {
@@ -377,4 +375,7 @@ h2 {
 .page_wrapper {
   min-height: calc(85vh - 9px);
   padding-bottom: 150px;
+  @media screen and (max-height: $sm) {
+    padding-bottom: 200px;
+  }
 }

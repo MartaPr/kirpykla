@@ -27,8 +27,8 @@ const FormField = ({ formdata, change, id }) => {
             <input
               {...formdata.config}
               value={formdata.value}
-              onBlur={event => change({ event, id, blur: true })}
-              onChange={event => change({ event, id })}
+              onBlur={(event) => change({ event, id, blur: true })}
+              onChange={(event) => change({ event, id })}
             />
             {showError()}
           </div>
@@ -43,11 +43,11 @@ const FormField = ({ formdata, change, id }) => {
             ) : null}
             <select
               value={formdata.value}
-              onBlur={event => change({ event, id, blur: true })}
-              onChange={event => change({ event, id })}
+              onBlur={(event) => change({ event, id, blur: true })}
+              onChange={(event) => change({ event, id })}
             >
               <option value="">Pasirinkite</option>
-              {formdata.config.options.map(item => (
+              {formdata.config.options.map((item) => (
                 <option key={item.key} value={item.key}>
                   {item.value}
                 </option>
@@ -60,15 +60,15 @@ const FormField = ({ formdata, change, id }) => {
 
       case 'textarea':
         formTemplate = (
-          <div className="input-field">
+          <div className="input-field text-area">
             {formdata.showlabel ? (
               <div className="label-inputs">{formdata.config.label}</div>
             ) : null}
             <textarea
               {...formdata.config}
               value={formdata.value}
-              onBlur={event => change({ event, id, blur: true })}
-              onChange={event => change({ event, id })}
+              onBlur={(event) => change({ event, id, blur: true })}
+              onChange={(event) => change({ event, id })}
             />
             {showError()}
           </div>

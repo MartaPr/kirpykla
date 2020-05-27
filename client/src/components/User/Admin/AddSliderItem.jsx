@@ -50,7 +50,7 @@ class AddSliderItem extends Component {
           label: 'Aprašymas',
           name: 'name_input',
           type: 'text',
-          placeholder: '',
+          placeholder: 'Įveskite aprašymą',
         },
         validation: {
           required: true,
@@ -185,7 +185,7 @@ class AddSliderItem extends Component {
       <UserLayout>
         <div className="add-product-form">
           <h2 className="create-gallery title">
-            Pagrindinio puslapio slaideris
+            Pagrindinio puslapio valdymas
           </h2>
 
           <form onSubmit={(event) => this.submitForm(event)}>
