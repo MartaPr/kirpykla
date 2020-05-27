@@ -61,7 +61,7 @@ class Login extends Component {
     if (formIsValid) {
       this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
         if (response.payload.loginSuccess) {
-          this.props.history.push('/vartotojas/informacija');
+          this.props.history.push('/admin/pagrindinis-puslapis');
         } else {
           this.setState({
             formError: true,

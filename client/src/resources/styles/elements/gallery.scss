@@ -1,6 +1,14 @@
 .image-gallery {
   margin-top: 50px;
+  @media screen and(max-width: $sm) {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
   .image-gallery-slide img {
     height: 45vh;
   }
+}
+
+.gallery-items-list {
+  margin-bottom: 50px;
 }

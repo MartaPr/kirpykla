@@ -195,7 +195,6 @@ class AddProduct extends Component {
           </form>
         </div>
         <div className="services-list">
-          <h2>Paslaugų sąrašas</h2>
           <EditProduct
             services={this.state.services}
             deleteProduct={this.deleteService}

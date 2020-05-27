@@ -7,11 +7,11 @@ const EditSliders = (props) => {
         <div key={item._id} className="product">
           <div className="product product--list-block">
             <div className="product product--list">
-              <div>{item.title}</div>
-              <div>{item.description}</div>
-              <div>{item.publish}</div>
+              <div className="slider-item">{item.title}</div>
+              <div className="slider-item">{item.description}</div>
+              <div className="slider-item">{item.publish}</div>
             </div>
-            <div className="product product--buttons">
+            <div className="product slider-buttons">
               <button
                 className="btn btn__btn-small btn--red"
                 onClick={() => props.deleteSlide(item._id)}

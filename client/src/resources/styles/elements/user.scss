@@ -1,5 +1,9 @@
 .user-info {
   display: flex;
+  @media screen and(max-width: $md) {
+    flex-direction: column;
+  }
+
   &__user-left,
   &__user-right {
     display: flex;
@@ -9,12 +13,20 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 50px;
+      @media screen and(max-width: $md) {
+        margin-bottom: 20px;
+      }
       .user-links {
         color: #333;
         padding-top: 20px;
         height: 40px;
       }
       .user-links:hover {
+        font-size: 17px;
+        color: 000;
+        font-weight: 500;
+      }
+      .is-active {
         font-size: 17px;
         color: 000;
         font-weight: 500;
@@ -30,9 +42,17 @@
   }
   &__user-left {
     width: 40%;
+
+    @media screen and(max-width: $sm) {
+      width: 100%;
+      margin-top: 20px;
+    }
   }
   &__user-right {
     justify-content: flex-start;
     width: 100%;
+    @media screen and(max-width: $md) {
+      margin-top: 20px;
+    }
   }
 }

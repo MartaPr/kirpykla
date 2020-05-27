@@ -3,6 +3,12 @@
   max-width: $container;
   padding: 0 15px;
   width: 100%;
+  @media screen and(max-width: $sm) {
+    padding: 0 20px;
+  }
+  @media screen and(min-width: 678px) and(max-width: $md) {
+    padding: 0 40px;
+  }
 }
 
 .container-md {
@@ -10,6 +16,12 @@
   max-width: $container-md;
   padding: 0 15px;
   width: 100%;
+  @media screen and(max-width: $sm) {
+    padding: 0 20px;
+  }
+  @media screen and(min-width: 678px) and(max-width: $md) {
+    padding: 0 40px;
+  }
 }
 
 .container-sm {
@@ -17,6 +29,12 @@
   max-width: $container-sm;
   padding: 0 15px;
   width: 100%;
+  @media screen and(max-width: $sm) {
+    padding: 0 20px;
+  }
+  @media screen and(min-width: 678px) and(max-width: $md) {
+    padding: 0 40px;
+  }
 }
 
 .container-xs {
@@ -24,6 +42,12 @@
   max-width: $container-xs;
   padding: 0 15px;
   width: 100%;
+  @media screen and(max-width: $sm) {
+    padding: 0 20px;
+  }
+  @media screen and(min-width: 678px) and(max-width: $md) {
+    padding: 0 40px;
+  }
 }
 
 .container-form {
@@ -31,4 +55,10 @@
   max-width: 600px;
   padding: 0 15px;
   width: 100%;
+  @media screen and(max-width: $sm) {
+    padding: 0 20px;
+  }
+  @media screen and(min-width: 678px) and(max-width: $md) {
+    padding: 0 40px;
+  }
 }

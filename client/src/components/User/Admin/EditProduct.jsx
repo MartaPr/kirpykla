@@ -7,10 +7,12 @@ const EditProduct = (props) => {
       return (
         <div key={item._id} className="product">
           <div className="product product--list-block">
-            <div className="product product--list">
-              <div>{item.name}</div>
-              <div>{item.price}</div>
-              <div>{item.publish}</div>
+            <div className="product product--list service">
+              <div className="list-item">{item.name}</div>
+              <div className="list-item">nuo {item.price}€ </div>
+              <div className="list-item">
+                {item.publish ? 'Matoma' : 'Paslėpta'}
+              </div>
             </div>
             <div className="product product--buttons">
               <ButtonOne
@@ -31,7 +33,12 @@ const EditProduct = (props) => {
         </div>
       );
     });
-  return <div className="container">{showPrices()}</div>;
+  return (
+    <div className="container services-list">
+      <h2>Paslaugų sąrašas</h2>
+      {showPrices()}
+    </div>
+  );
 };
 
 export default EditProduct;

@@ -124,6 +124,7 @@ class AddGalleryItem extends Component {
       this.props.dispatch(addGallery(datatoSubmit)).then(() => {
         if (this.props.gallery.addGallery.success) {
           this.resetFieldHandler();
+          this.getGallery();
         } else {
           this.setState({ formError: true });
         }

@@ -5,7 +5,7 @@ import Login from './Login';
 const RegisterLogin = () => {
   return (
     <div className="register-login container-form">
-      <div className="register-login__left">
+      {/* <div className="register-login__left">
         <h2 className="register-login__header">Naujas klientas?</h2>
         <div className="register-login__button">
           <ButtonOne
@@ -18,9 +18,9 @@ const RegisterLogin = () => {
             }}
           />
         </div>
-      </div>
+      </div> */}
       <div className="register-login__right">
-        <h2 className="register-login__header">Esamas klientas</h2>
+        {/* <h2 className="register-login__header">Esamas klientas</h2> */}
         <Login />
       </div>
     </div>

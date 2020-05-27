@@ -17,14 +17,14 @@ export default function(ComposedClass, reload, adminRoute = null) {
 
         if (!user.isAuth) {
           if (reload) {
-            this.props.history.push('/prisijungti');
+            this.props.history.push('/admin');
           }
         } else {
           if (adminRoute && user.isAdmin) {
-            this.props.history.push('/vartotojas/informacija');
+            this.props.history.push('/admin/pagrindinis-puslapis');
           } else {
             if (reload === false) {
-              this.props.history.push('/vartotojas/informacija');
+              this.props.history.push('/admin/pagrindinis-puslapis');
             }
           }
         }

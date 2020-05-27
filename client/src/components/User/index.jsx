@@ -6,17 +6,22 @@ const UserDashboard = ({ user }) => {
   return (
     <UserLayout>
       <div className="user-info-panel">
-        <h2 className="email-heading">El. pašto adresas:</h2>
+        <h2 className="email-heading">Prisijungęs:</h2>
         <div className="user-info-panel user-info-panel__user-email">
           {user.userdata.email}
         </div>
-        <MyButton type="default" title="Keisti" linkTo="/user/user_profile" />
+        {/* <MyButton
+          className="btn btn-default"
+          type="default"
+          title="Keisti"
+          linkTo="/user/user_profile"
+        /> */}
       </div>
-      <div className="user-info-panel">
+      {/* <div className="user-info-panel">
         <h2>Apsilankymų istorija</h2>
         <div className="user-product-block-wrapper">istorija</div>
-        {/* TODO: listas */}
-      </div>
+        TODO: listas
+      </div> */}
     </UserLayout>
   );
 };

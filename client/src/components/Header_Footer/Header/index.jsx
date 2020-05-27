@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/user_actions';
@@ -7,7 +7,7 @@ import { logoutUser } from '../../../actions/user_actions';
 class Header extends Component {
   state = {
     isOpen: false,
-    className: 'wrapper accordion-close',
+    className: '',
     logo: {
       name: 'Aouma nailcare',
       linkTo: '/',
@@ -32,14 +32,9 @@ class Header extends Component {
     ],
     user: [
       {
-        name: 'Informacija',
-        linkTo: '/vartotojas/informacija',
+        name: 'ADMIN',
+        linkTo: '/admin/pagrindinis-puslapis',
         public: false,
-      },
-      {
-        name: 'Prisijungti',
-        linkTo: '/prisijungti',
-        public: true,
       },
       {
         name: 'Atsijungti',
@@ -60,7 +55,7 @@ class Header extends Component {
     if (isOpen) {
       this.setState({
         isOpen: false,
-        className: 'wrapper accordion-close',
+        className: 'wrapper invisible',
       });
     } else {
       this.setState({
@@ -88,9 +83,15 @@ class Header extends Component {
         {item.name}
       </div>
     ) : (
-      <Link className="user-links" to={item.linkTo} key={i}>
+      <NavLink
+        activeClassName="is-active"
+        className="user-links"
+        to={item.linkTo}
+        key={i}
+        onClick={this.handleMenuClick}
+      >
         {item.name}
-      </Link>
+      </NavLink>
     );
 
   showLinks = (type) => {
@@ -128,12 +129,13 @@ class Header extends Component {
           </div>
           <div className="header header-container">
             <div className="header header-left">
-              <Link
+              <NavLink
+                activeClassName="is-active"
                 className="header header-left--logo"
                 to={this.state.logo.linkTo}
               >
                 {this.state.logo.name}
-              </Link>
+              </NavLink>
             </div>
             <div className={`header header-links ${className}`}>
               <div onClick={this.handleMenuClick}>
@@ -141,8 +143,6 @@ class Header extends Component {
               </div>
               <div className="page-links-wrapper">
                 {this.showLinks(this.state.page)}
-              </div>
-              <div className="page-links-wrapper">
                 {this.showLinks(this.state.user)}
               </div>
             </div>

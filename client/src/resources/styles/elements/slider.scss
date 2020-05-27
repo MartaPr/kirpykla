@@ -4,11 +4,47 @@
     flex-direction: column;
     min-height: 400px;
     justify-content: center;
-
-    width: 700px;
-    .tag-title {
-      margin-bottom: 20px;
-      color: #fff;
+    width: 600px;
+    @media screen and (max-width: $md) {
+      width: unset;
+    }
+    .info-block {
+      padding: 50px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 5px;
+      margin-top: 25%;
+      @media screen and (max-width: $md) {
+        padding: 20px;
+        margin-top: 0%;
+      }
+      .tag-title {
+        margin-bottom: 20px;
+        color: #333;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 22px;
+      }
+      .tag-text {
+        color: #333;
+        font-weight: 500;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+      .slider-button {
+        @media screen and (max-width: $md) {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .slider-image {
+    height: 700px;
+    @media screen and (max-width: $sm) {
+      height: 450px;
+    }
+    @media screen and (max-width: $md) {
+      height: 774px;
     }
   }
 }

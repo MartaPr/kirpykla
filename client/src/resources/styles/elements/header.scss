@@ -58,19 +58,23 @@
           cursor: pointer;
         }
       }
+      .is-active {
+        color: #eac4c6;
+      }
     }
 
     @media screen and (max-width: $md) {
       .invisible {
         display: none;
+        animation: fade-out 1s;
       }
       .accordion-close {
-        right: -50%;
+        right: 0;
         transition: all 0.2s ease-out;
       }
       .accordion-open {
-        right: 0px;
-        transition: all 0.2s ease-out;
+        right: 0;
+        animation: fade-in 1s;
         div {
           width: 100%;
           text-align: right;
@@ -102,6 +106,24 @@
           padding: 10px;
         }
       }
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
     }
   }
 

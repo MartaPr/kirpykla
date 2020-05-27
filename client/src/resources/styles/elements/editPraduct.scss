@@ -1,3 +1,10 @@
+.services-list {
+  margin-bottom: 50px;
+  padding: 0;
+  @media screen and(max-width: $md) {
+    margin-bottom: 20px;
+  }
+}
 .product {
   width: 100%;
 
@@ -5,14 +12,45 @@
     display: flex;
     align-items: center;
     padding-bottom: 10px;
+    @media screen and(max-width: $md) {
+      flex-direction: column;
+    }
   }
   &--list {
     width: 80%;
     display: flex;
+    @media screen and(max-width: $md) {
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .list-item {
+      width: 245px;
+      @media screen and(max-width: $md) {
+        width: 100%;
+      }
+    }
+    .slider-item {
+      @media screen and(max-width: $md) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    }
   }
   &--buttons {
     display: flex;
     justify-content: space-between;
     width: 25%;
+    @media screen and(max-width: $md) {
+      width: 99%;
+    }
+  }
+  .slider-buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 20%;
+    @media screen and(max-width: $md) {
+      width: 100%;
+    }
   }
 }

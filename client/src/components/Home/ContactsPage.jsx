@@ -30,15 +30,13 @@ class ContactsPage extends Component {
           <div className="tag">
             <FontAwesomeIcon icon={faCompass} className="icon" />
             <div className="contact">
-              <div>Adresas</div>
-              <div>{item.address}</div>
+              <div className="info">{item.address}</div>
             </div>
           </div>
           <div className="tag">
             <FontAwesomeIcon icon={faPhone} className="icon" />
             <div className="contact">
-              <div>Tel. nr.</div>
-              <a className="phone" href={`tel:${item.phone}`}>
+              <a className="info" href={`tel:${item.phone}`}>
                 +{item.phone}
               </a>
             </div>
@@ -46,8 +44,7 @@ class ContactsPage extends Component {
           <div className="tag">
             <FontAwesomeIcon icon={faEnvelope} className="icon" />
             <div className="contact">
-              <div>El. paštas</div>
-              <a className="email" href={`mailto:${item.email}`}>
+              <a className="info" href={`mailto:${item.email}`}>
                 {item.email}
               </a>
             </div>
