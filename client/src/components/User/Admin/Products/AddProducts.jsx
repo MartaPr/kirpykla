@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import UserLayout from '../../../Hoc/User';
-import FormField from '../../utils/Form/FormField';
+import UserLayout from '../../../../Hoc/User';
+import FormField from '../../../utils/Form/FormField';
 import EditProduct from './EditProduct';
 import {
   update,
   generateData,
   isFormValid,
   resetFields,
-} from '../../utils/Form/FormActions';
+} from '../../../utils/Form/FormActions';
 import {
   addProduct,
   getProducts,
   clearProduct,
   deleteProduct,
-} from '../../../actions/product_actions';
+} from '../../../../actions/product_actions';
 import { connect } from 'react-redux';
 
 class AddProduct extends Component {

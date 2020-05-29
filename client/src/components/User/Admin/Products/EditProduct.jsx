@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonOne from '../../utils/Button';
+import ButtonOne from '../../../utils/Button';
 
 const EditProduct = (props) => {
   const showPrices = () =>

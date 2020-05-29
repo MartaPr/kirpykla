@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import UserLayout from '../../../Hoc/User';
+import UserLayout from '../../../../Hoc/User';
 
-import FormField from '../../utils/Form/FormField';
+import FormField from '../../../utils/Form/FormField';
 import EditGalleryItem from './EditGalleryItem';
 import {
   update,
   generateData,
   isFormValid,
   resetFields,
-} from '../../utils/Form/FormActions';
-import FileUpload from './FileUpload';
+} from '../../../utils/Form/FormActions';
+import FileUpload from '../../../utils/Form/FileUpload';
 
 import { connect } from 'react-redux';
 import {
@@ -17,7 +17,7 @@ import {
   clearGallery,
   getGalleryItems,
   deleteGallery,
-} from '../../../actions/gallery_actions';
+} from '../../../../actions/gallery_actions';
 
 class AddGalleryItem extends Component {
   state = {

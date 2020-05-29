@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import UserLayout from '../../../Hoc/User';
+import UserLayout from '../../../../Hoc/User';
 import FileUpload from './FileUpload';
-import FormField from '../../utils/Form/FormField';
-import EditSliders from '../Admin/EditSliders';
+import FormField from '../../../utils/Form/FormField';
+import EditSliders from './EditSliders';
 
 import {
   update,
   generateData,
   isFormValid,
   resetFields,
-} from '../../utils/Form/FormActions';
+} from '../../../utils/Form/FormActions';
 
 import {
   addSliderItem,
   clearSliderItem,
   deleteSliderItem,
   getSlider,
-} from '../../../actions/slider_actions';
+} from '../../../../actions/slider_actions';
 
 import { connect } from 'react-redux';
 
