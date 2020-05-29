@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import UserLayout from '../../../Hoc/User';
+import UserLayout from '../../../../Hoc/User';
 import FileUpload from './FileUpload';
-import FormField from '../../utils/Form/FormField';
-import EditSliders from '../Admin/EditSliders';
+import FormField from '../../../utils/Form/FormField';
+import EditSliders from './EditSliders';
 
 import {
   update,
   generateData,
   isFormValid,
   resetFields,
-} from '../../utils/Form/FormActions';
+} from '../../../utils/Form/FormActions';
 
 import {
   addSliderItem,
   clearSliderItem,
   deleteSliderItem,
-  getSliderImages,
-} from '../../../actions/slider_actions';
+  getSlider,
+} from '../../../../actions/slider_actions';
 
 import { connect } from 'react-redux';
 
@@ -51,25 +51,6 @@ class AddSliderItem extends Component {
           name: 'name_input',
           type: 'text',
           placeholder: 'Įveskite aprašymą',
-        },
-        validation: {
-          required: true,
-        },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-        showlabel: true,
-      },
-      publish: {
-        element: 'select',
-        value: '',
-        config: {
-          label: 'Publikuoti',
-          name: 'publish_input',
-          options: [
-            { key: true, value: 'Rodyti' },
-            { key: false, value: 'Paslėpti' },
-          ],
         },
         validation: {
           required: true,
@@ -165,8 +146,8 @@ class AddSliderItem extends Component {
   };
 
   getSlides = () => {
-    this.props.dispatch(getSliderImages()).then((response) => {
-      let slides = this.props.slider.sliderImg;
+    this.props.dispatch(getSlider()).then((response) => {
+      let slides = this.props.slider.size;
       this.setState({
         slides,
       });
@@ -201,11 +182,6 @@ class AddSliderItem extends Component {
             <FormField
               id={'description'}
               formdata={this.state.formdata.description}
-              change={(element) => this.updateForm(element)}
-            />
-            <FormField
-              id={'publish'}
-              formdata={this.state.formdata.publish}
               change={(element) => this.updateForm(element)}
             />
             {this.state.formSuccess ? (

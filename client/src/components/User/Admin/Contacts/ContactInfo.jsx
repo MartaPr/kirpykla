@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import UserLayout from '../../../Hoc/User';
-import FormField from '../../utils/Form/FormField';
+import UserLayout from '../../../../Hoc/User';
+import FormField from '../../../utils/Form/FormField';
 
 import {
   update,
   generateData,
   isFormValid,
   populateFields,
-} from '../../utils/Form/FormActions';
+} from '../../../utils/Form/FormActions';
 import {
   getContacts,
   addContacts,
   updateContacts,
-} from '../../../actions/contacts_actions';
+} from '../../../../actions/contacts_actions';
 import { connect } from 'react-redux';
 
 class ContactInfo extends Component {

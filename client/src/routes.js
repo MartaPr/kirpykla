@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Layout from './Hoc/Layout';
 import RegisterLogin from './components/Register_Login';
 import Register from './components/Register_Login/Register';
-import Userdashboard from './components/User';
+// import Userdashboard from './components/User';
 import Auth from './Hoc/Auth';
 import AddProduct from './components/User/Admin/AddProducts';
 import PriceList from './components/Home/PriceList';
@@ -19,11 +19,11 @@ const Routes = () => {
   return (
     <Layout>
       <Switch>
-        <Route
+        {/* <Route
           path="/admin/informacija"
           exact
           component={Auth(Userdashboard, true)}
-        />
+        /> */}
         <Route
           path="/admin/pagrindinis-puslapis"
           exact

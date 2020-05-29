@@ -54,7 +54,7 @@ class ContactsPage extends Component {
             target="blank"
             href="https://www.facebook.com/aoumanailcare"
           >
-            <FontAwesomeIcon icon={faFacebookF} className="icon" size="2x" />
+            <FontAwesomeIcon icon={faFacebookF} className="icon" />
           </a>
         </div>
       );
