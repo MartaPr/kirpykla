@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserLayout from '../../../../Hoc/User';
-import FileUpload from './FileUpload';
+import FileUpload from '../../../utils/Form/FileUpload';
 import FormField from '../../../utils/Form/FormField';
 import EditSliders from './EditSliders';
 

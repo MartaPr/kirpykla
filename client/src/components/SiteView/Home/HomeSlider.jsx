@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import ButtonOne from '../utils/Button';
+import ButtonOne from '../../utils/Button';
 
 const HomeSlider = (props) => {
   const settings = {

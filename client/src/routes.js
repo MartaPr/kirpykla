@@ -1,19 +1,19 @@
 import React from 'react';
-import Home from './components/Home';
+import Home from './components/SiteView/Home';
 import { Switch, Route } from 'react-router-dom';
 import Layout from './Hoc/Layout';
-import RegisterLogin from './components/Register_Login';
-import Register from './components/Register_Login/Register';
+import RegisterLogin from './components/Login';
+import Register from './components/Login/Register';
 // import Userdashboard from './components/User';
 import Auth from './Hoc/Auth';
-import AddProduct from './components/User/Admin/AddProducts';
-import PriceList from './components/Home/PriceList';
-import AddGalleryItem from './components/User/Admin/AddGalleryItem';
-import GalleryPage from './components/Home/GalleryPage';
-import EditProductForm from './components/User/Admin/EditProductForm';
-import ContactInfo from './components/User/Admin/ContactInfo';
-import AddSliderItem from './components/User/Admin/AddSliderItem';
-import ContactsPage from './components/Home/ContactsPage';
+import AddProduct from './components/User/Admin/Products/AddProducts';
+import PriceList from './components/SiteView/PriceList';
+import AddGalleryItem from './components/User/Admin/Gallery/AddGalleryItem';
+import GalleryPage from './components/SiteView/GalleryPage';
+import EditProductForm from './components/User/Admin/Products/EditProductForm';
+import ContactInfo from './components/User/Admin/Contacts/ContactInfo';
+import AddSliderItem from './components/User/Admin/Slider/AddSliderItem';
+import ContactsPage from './components/SiteView/ContactsPage';
 
 const Routes = () => {
   return (

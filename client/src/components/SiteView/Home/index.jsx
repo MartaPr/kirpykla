@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSlider } from '../../actions/slider_actions';
+import { getSlider } from '../../../actions/slider_actions';
 import HomeSlider from './HomeSlider';
 
-class MainPage extends Component {
+class Home extends Component {
   state = {
     slides: [],
   };
@@ -29,4 +29,4 @@ const mapStateToProps = (props) => {
   };
 };
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps)(Home);
