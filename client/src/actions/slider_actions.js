@@ -6,6 +6,7 @@ import {
   GET_SLIDER,
   UPDATE_SLIDER,
   DELETE_SLIDER_ITEM,
+  GET_SLIDER_BY_ID,
 } from './types';
 
 import { SLIDER_SERVER } from '../components/utils/misc';
@@ -32,7 +33,7 @@ export function getSlider() {
   };
 }
 
-export function getSliderImages(skip, limit) {
+export function getSliderImages() {
   const request = axios.post(`${SLIDER_SERVER}/images`).then((response) => {
     let newState = [...response.data.item];
     return {
@@ -43,6 +44,17 @@ export function getSliderImages(skip, limit) {
   console.log('res items', request);
   return {
     type: GET_SLIDER_ITEM,
+    payload: request,
+  };
+}
+
+export function getSliderById(id) {
+  const request = axios
+    .get(`/api/slider/item/${id}`)
+    .then((response) => response.data);
+
+  return {
+    type: GET_SLIDER_BY_ID,
     payload: request,
   };
 }

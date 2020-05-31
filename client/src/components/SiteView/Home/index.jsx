@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSlider } from '../../actions/slider_actions';
+import { getSlider } from '../../../actions/slider_actions';
 import HomeSlider from './HomeSlider';
 
-class MainPage extends Component {
+class Home extends Component {
   state = {
     slides: [],
   };
 
   componentDidMount() {
     this.props.dispatch(getSlider()).then((response) => {
-      const slides = this.props.slider.size;
+      const getSlides = this.props.slider.size;
+      const slides = getSlides.filter((slide) => slide.publish === true);
+
       console.log('slides', slides);
       this.setState({
         slides,
@@ -29,4 +31,4 @@ const mapStateToProps = (props) => {
   };
 };
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps)(Home);

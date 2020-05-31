@@ -18,15 +18,15 @@ class Register extends Component {
           name: 'email_input',
           type: 'email',
           placeholder: 'Įveskite el. pašto adresą',
-          label: 'El. pašto adresas'
+          label: 'El. pašto adresas',
         },
         validation: {
           required: true,
-          email: true
+          email: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
+        validationMessage: '',
       },
       password: {
         element: 'input',
@@ -34,14 +34,14 @@ class Register extends Component {
         config: {
           name: 'password_input',
           type: 'password',
-          placeholder: 'Įveskite slaptažodį'
+          placeholder: 'Įveskite slaptažodį',
         },
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
+        validationMessage: '',
       },
       confirmPassword: {
         element: 'input',
@@ -49,28 +49,28 @@ class Register extends Component {
         config: {
           name: 'confirm_password_input',
           type: 'password',
-          placeholder: 'Pakartokite slaptažodį'
+          placeholder: 'Pakartokite slaptažodį',
         },
         validation: {
           required: true,
-          confirm: 'password'
+          confirm: 'password',
         },
         valid: false,
         touched: false,
-        validationMessage: ''
-      }
-    }
+        validationMessage: '',
+      },
+    },
   };
 
-  updateForm = element => {
+  updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, 'register');
     this.setState({
       formError: false,
-      formdata: newFormdata
+      formdata: newFormdata,
     });
   };
 
-  submitForm = e => {
+  submitForm = (e) => {
     e.preventDefault();
 
     let dataToSubmit = generateData(this.state.formdata, 'register');
@@ -79,25 +79,25 @@ class Register extends Component {
     if (formIsValid) {
       this.props
         .dispatch(registerUser(dataToSubmit))
-        .then(response => {
+        .then((response) => {
           if (response.payload.success) {
             this.setState({
               formError: false,
-              formSuccess: true
+              formSuccess: true,
             });
             setTimeout(() => {
-              this.props.history.push('/prisijungti');
+              this.props.history.push('/admin');
             }, 3000);
           } else {
             this.setState({ formError: true });
           }
         })
-        .catch(e => {
+        .catch((e) => {
           this.setState({ formError: true });
         });
     } else {
       this.setState({
-        formError: true
+        formError: true,
       });
     }
   };
@@ -108,23 +108,23 @@ class Register extends Component {
         <h2 className="signin-title">Prisijungimo informacija</h2>
         <form
           className="signin__register-form"
-          onSubmit={event => this.submitForm(event)}
+          onSubmit={(event) => this.submitForm(event)}
         >
           <FormField
             id={'email'}
             formdata={this.state.formdata.email}
-            change={element => this.updateForm(element)}
+            change={(element) => this.updateForm(element)}
           />
 
           <FormField
             id={'password'}
             formdata={this.state.formdata.password}
-            change={element => this.updateForm(element)}
+            change={(element) => this.updateForm(element)}
           />
           <FormField
             id={'confirmPassword'}
             formdata={this.state.formdata.confirmPassword}
-            change={element => this.updateForm(element)}
+            change={(element) => this.updateForm(element)}
           />
 
           <div className="checkbox">
@@ -145,7 +145,7 @@ class Register extends Component {
           ) : null}
           <button
             className="btn btn-default"
-            onSubmit={event => this.submitForm(event)}
+            onSubmit={(event) => this.submitForm(event)}
           >
             registruotis
           </button>
