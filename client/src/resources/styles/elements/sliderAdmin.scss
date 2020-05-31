@@ -4,16 +4,33 @@
     &--list-block {
       display: flex;
       align-items: center;
+      height: 50px;
+      .slider-buttons {
+        display: flex;
+        width: 22%;
+        justify-content: space-between;
+      }
     }
     &--list {
       display: flex;
-      padding-bottom: 20px;
+      width: 78%;
+      align-items: center;
       .slider-item-title {
-        width: 300px;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .slider-item-description {
-        width: 520px;
+        width: 320px;
         padding-right: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .slider-item-publish {
+        width: 100px;
+        text-align: right;
       }
     }
   }

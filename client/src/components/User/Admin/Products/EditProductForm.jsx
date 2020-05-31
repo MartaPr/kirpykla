@@ -79,6 +79,7 @@ class EditProductForm extends Component {
     const _id = this.props.match.params.id;
     this.props.dispatch(getProductById(_id)).then((response) => {
       let services = this.props.products.services;
+      console.log('products props', this.props);
       this.setState({
         services,
       });

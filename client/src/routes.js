@@ -14,6 +14,7 @@ import EditProductForm from './components/User/Admin/Products/EditProductForm';
 import ContactInfo from './components/User/Admin/Contacts/ContactInfo';
 import AddSliderItem from './components/User/Admin/Slider/AddSliderItem';
 import ContactsPage from './components/SiteView/ContactsPage';
+import EditSliderForm from './components/User/Admin/Slider/EditSliderForm';
 
 const Routes = () => {
   return (
@@ -28,6 +29,11 @@ const Routes = () => {
           path="/admin/pagrindinis-puslapis"
           exact
           component={Auth(AddSliderItem, true)}
+        />
+        <Route
+          path="/admin/pagrindinis-puslapis/:id"
+          exact
+          component={Auth(EditSliderForm, true)}
         />
         <Route
           path="/admin/paslaugos"

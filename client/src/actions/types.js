@@ -26,3 +26,4 @@ export const GET_SLIDER_ITEM = 'get_slider_item';
 export const GET_SLIDER = 'get_slider';
 export const UPDATE_SLIDER = 'update_slider';
 export const DELETE_SLIDER_ITEM = 'delete_slider';
+export const GET_SLIDER_BY_ID = 'get_slider_by_id';
