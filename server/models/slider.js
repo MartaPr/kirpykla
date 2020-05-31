@@ -17,6 +17,10 @@ const SliderSchema = mongoose.Schema({
     type: Array,
     default: [],
   },
+  publish: {
+    required: true,
+    type: Boolean,
+  },
 });
 
 const Slider = mongoose.model('Slider', SliderSchema);

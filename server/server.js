@@ -181,8 +181,8 @@ app.get('/api/slider/items', (req, res) => {
   });
 });
 
-app.get('/api/slider/items/:id', auth, admin, (req, res) => {
-  Product.findById(req.params.id)
+app.get('/api/slider/item/:id', auth, admin, (req, res) => {
+  Slider.findById(req.params.id)
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json('Error: ' + err));
 });

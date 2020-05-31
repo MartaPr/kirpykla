@@ -2,27 +2,25 @@ import React, { Component } from 'react';
 import UserLayout from '../../../../Hoc/User';
 import FileUpload from '../../../utils/Form/FileUpload';
 import FormField from '../../../utils/Form/FormField';
-import EditSliders from './EditSliders';
 
 import {
   update,
   generateData,
   isFormValid,
-  resetFields,
+  populateFields,
 } from '../../../utils/Form/FormActions';
 
 import {
-  addSliderItem,
-  clearSliderItem,
-  deleteSliderItem,
-  getSlider,
+  getSliderById,
+  updateSlider,
 } from '../../../../actions/slider_actions';
 
 import { connect } from 'react-redux';
 
-class AddSliderItem extends Component {
+class EditSliderForm extends Component {
   state = {
-    slides: [],
+    slide: [],
+    image: [],
     formError: false,
     formSuccess: false,
     formdata: {
@@ -93,7 +91,20 @@ class AddSliderItem extends Component {
   };
 
   componentDidMount() {
-    this.getSlides();
+    const _id = this.props.match.params.id;
+    this.props.dispatch(getSliderById(_id)).then((response) => {
+      const slide = this.props.slider.slide;
+      const image = this.props.slider.slide.image;
+      this.setState({
+        slide,
+        image,
+      });
+      console.log('slider state', this.state.slide);
+      const newFormData = populateFields(this.state.formdata, this.state.slide);
+      this.setState({
+        formdata: newFormData,
+      });
+    });
   }
 
   imagesHandler = (image) => {
@@ -108,55 +119,31 @@ class AddSliderItem extends Component {
     });
   };
 
-  updateFields = (newFormdata) => {
-    this.setState({
-      formdata: newFormdata,
-    });
-  };
-
   updateForm = (element) => {
-    const newFormdata = update(element, this.state.formdata, 'slider');
+    const newFormdata = update(element, this.state.formdata, 'update_slider');
     this.setState({
       formError: false,
       formdata: newFormdata,
     });
-    console.log('element', element);
-  };
-
-  resetFieldHandler = () => {
-    const newFormData = resetFields(this.state.formdata, 'slider');
-
-    this.setState({
-      formdata: newFormData,
-      formSuccess: true,
-    });
-    setTimeout(() => {
-      this.setState(
-        {
-          formSuccess: false,
-        },
-        () => {
-          this.props.dispatch(clearSliderItem());
-        }
-      );
-    }, 3000);
+    console.log('update form', newFormdata);
   };
 
   submitForm = (event) => {
     event.preventDefault();
 
-    let datatoSubmit = generateData(this.state.formdata, 'slider');
-    let formIsValid = isFormValid(this.state.formdata, 'slider');
+    const datatoSubmit = generateData(this.state.formdata, 'update_slider');
+    const formIsValid = isFormValid(this.state.formdata, 'update_slider');
 
     if (formIsValid) {
-      this.props.dispatch(addSliderItem(datatoSubmit)).then(() => {
-        if (this.props.slider) {
-          this.resetFieldHandler();
-          this.getSlides();
-        } else {
-          this.setState({ formError: true });
-        }
-      });
+      this.props
+        .dispatch(updateSlider(datatoSubmit, this.props.match.params.id))
+        .then(() => {
+          if (this.state.image.length && this.props.slider.updateSlider) {
+            this.setState({ formError: false, formSuccess: true });
+          } else {
+            this.setState({ formError: true });
+          }
+        });
     } else {
       this.setState({
         formError: true,
@@ -164,19 +151,20 @@ class AddSliderItem extends Component {
     }
   };
 
-  getSlides = () => {
-    this.props.dispatch(getSlider()).then((response) => {
-      let slides = this.props.slider.size;
-      this.setState({
-        slides,
-      });
-      console.log('slides from props', slides);
-    });
-  };
-
-  deleteSlide = (id) => {
-    this.props.dispatch(deleteSliderItem(id)).then((response) => {
-      this.getSlides();
+  getImage = () => {
+    return this.state.image.map((item) => {
+      return (
+        <div key={item.public_id} className="img-wrapper">
+          <div
+            className="image"
+            style={{
+              background: `url(${item.url}) center no-repeat`,
+              backgroundSize: 'cover',
+              height: '300px',
+            }}
+          ></div>
+        </div>
+      );
     });
   };
 
@@ -197,7 +185,7 @@ class AddSliderItem extends Component {
               id={'title'}
               formdata={this.state.formdata.title}
               change={(element) => this.updateForm(element)}
-            />{' '}
+            />
             <FormField
               id={'description'}
               formdata={this.state.formdata.description}
@@ -209,7 +197,9 @@ class AddSliderItem extends Component {
               change={(element) => this.updateForm(element)}
             />
             {this.state.formSuccess ? (
-              <div className="form-success">Sėkmingai pridėta</div>
+              <div className="form-success">
+                Slankiklis sėkmingai atnaujintas
+              </div>
             ) : null}
             {this.state.formError ? (
               <div className="error-label">
@@ -221,15 +211,10 @@ class AddSliderItem extends Component {
               className="btn btn__btn-default"
               onClick={(event) => this.submitForm(event)}
             >
-              Pridėti
+              Atnaujinti
             </button>
+            {this.getImage()}
           </form>
-        </div>
-        <div className="slider-items-list">
-          <EditSliders
-            slides={this.state.slides}
-            deleteSlide={this.deleteSlide}
-          />
         </div>
       </UserLayout>
     );
@@ -242,4 +227,4 @@ const mapStateToProps = (props) => {
   };
 };
 
-export default connect(mapStateToProps)(AddSliderItem);
+export default connect(mapStateToProps)(EditSliderForm);

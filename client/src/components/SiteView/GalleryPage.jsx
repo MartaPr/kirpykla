@@ -11,7 +11,6 @@ class GalleryPage extends Component {
   componentDidMount() {
     this.props.dispatch(getGalleryItems()).then((response) => {
       const gallery = this.props.gallery.toGallery;
-
       this.setState({
         gallery,
       });
@@ -53,9 +52,9 @@ class GalleryPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (props) => {
   return {
-    gallery: state.gallery,
+    gallery: props.gallery,
   };
 };
 

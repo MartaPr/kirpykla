@@ -5,6 +5,7 @@ import {
   GET_SLIDER,
   UPDATE_SLIDER,
   DELETE_SLIDER_ITEM,
+  GET_SLIDER_BY_ID,
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -19,6 +20,11 @@ export default function(state = {}, action) {
       return {
         ...state,
         sliderImg: action.payload.item,
+      };
+    case GET_SLIDER_BY_ID:
+      return {
+        ...state,
+        slide: action.payload,
       };
     case ADD_SLIDER_ITEM:
       return {

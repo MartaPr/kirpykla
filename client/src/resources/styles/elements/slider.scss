@@ -31,6 +31,7 @@
         text-transform: uppercase;
       }
       .slider-button {
+        display: flex;
         @media screen and (max-width: $md) {
           display: flex;
           justify-content: center;
