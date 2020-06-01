@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getProducts } from '../../actions/product_actions';
+import bgImg from '../../resources/img/bgImg.jpg';
 
 class PriceList extends Component {
   state = {
@@ -34,11 +35,15 @@ class PriceList extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h2 className="title">Paslaugų kainos</h2>
-        <div className="priece-list">
-          {this.showPrices()}
-          {console.log('show prices')}
+      <div className="price-list">
+        <div className="price-list price-list--left">
+          <div className="categories">
+            <h2 className="title">Paslaugų kainos</h2>
+            {this.showPrices()}
+          </div>
+        </div>
+        <div className="price-list price-list--right">
+          <img src={bgImg} alt="bg" />
         </div>
       </div>
     );
