@@ -6,9 +6,12 @@ import HomeSlider from './HomeSlider';
 class Home extends Component {
   state = {
     slides: [],
+    height: '',
   };
 
   componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     this.props.dispatch(getSlider()).then((response) => {
       const getSlides = this.props.slider.size;
       const slides = getSlides.filter((slide) => slide.publish === true);
@@ -20,8 +23,12 @@ class Home extends Component {
     });
   }
 
+  updateWindowDimensions = () => {
+    this.setState({ height: window.innerHeight });
+  };
+
   render() {
-    return <HomeSlider slides={this.state.slides} />;
+    return <HomeSlider height={this.state.height} slides={this.state.slides} />;
   }
 }
 

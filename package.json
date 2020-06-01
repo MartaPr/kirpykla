@@ -43,6 +43,7 @@
     "nodemon": "^1.18.10",
     "npm": "^6.9.0",
     "react-dropzone": "^10.1.5",
+    "react-photo-gallery": "^8.0.0",
     "react-slick": "^0.26.1"
   },
   "devDependencies": {
