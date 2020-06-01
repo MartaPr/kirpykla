@@ -45,7 +45,6 @@ class GalleryPage extends Component {
   render() {
     return (
       <div className="container">
-        {/* <h1>Galerija</h1> */}
         <div className="gallery">{this.renderGallery()}</div>
       </div>
     );

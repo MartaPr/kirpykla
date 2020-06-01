@@ -10,8 +10,8 @@ const HomeSlider = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
 
   const generateSlides = () => {
@@ -23,8 +23,9 @@ const HomeSlider = (props) => {
             className="slider slider-image"
             style={{
               background: `url(${item.image[0].url}) no-repeat center`,
-              backgroundPosition: '50% 0%',
+              backgroundPosition: '50% 50%',
               backgroundSize: 'cover',
+              height: `${props.height - 250}px`,
             }}
           >
             <div className="container">
