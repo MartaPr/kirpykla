@@ -6,13 +6,16 @@
     // position: relative;
 
     .header-left {
-      width: 215px;
       &--logo {
-        font-family: 'Cinzel', serif;
-        text-transform: uppercase;
         display: flex;
         align-items: center;
         font-size: 18px;
+        .logo-img {
+          width: 185px;
+          @media screen and (max-width: $sm) {
+            width: 115px;
+          }
+        }
       }
     }
     .header-links {
@@ -79,8 +82,6 @@
           width: 100%;
           text-align: right;
           .close {
-            // position: relative;
-            // left: 312px;
             top: 9px;
             width: 32px;
             height: 32px;

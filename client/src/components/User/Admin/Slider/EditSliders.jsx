@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonOne from '../../../utils/Button';
+import ConfirmDialog from '../../../utils/ConfirmDiamlog';
 
 const EditSliders = (props) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const showSlides = () => {
     return props.slides.map((item) => {
       return (
@@ -21,12 +23,24 @@ const EditSliders = (props) => {
                 title="Redaguoti"
                 linkTo={`/admin/pagrindinis-puslapis/${item._id}`}
               />
-              <button
-                className="btn btn__btn-small btn--red"
-                onClick={() => props.deleteSlide(item._id)}
-              >
-                Trinti
-              </button>
+
+              <div>
+                <button
+                  className="btn btn__btn-small btn--red"
+                  onClick={() => setConfirmOpen(true)}
+                >
+                  Trinti
+                </button>
+                <ConfirmDialog
+                  title="Trinti įrašą?"
+                  open={confirmOpen}
+                  setOpen={setConfirmOpen}
+                  // onConfirm={props.deleteSlide(item._id)}
+                  onConfirm={() => props.deleteSlide(item._id)}
+                >
+                  Patvirtinkite, ar tikrai norite ištrinti įrašą?
+                </ConfirmDialog>
+              </div>
             </div>
           </div>
         </div>

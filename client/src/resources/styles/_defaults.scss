@@ -237,6 +237,10 @@ textarea {
   border-style: none;
   color: inherit;
   outline: none;
+  background-color: #fff;
+  -webkit-box-shadow: 2px 6px 5px 0px rgba(245, 245, 245, 1);
+  -moz-box-shadow: 2px 6px 5px 0px rgba(245, 245, 245, 1);
+  box-shadow: 2px 6px 5px 0px rgba(245, 245, 245, 1);
 }
 
 /* Style select like a standard input */

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonOne from '../../../utils/Button';
+import ConfirmDialog from '../../../utils/ConfirmDiamlog';
 
 const EditProduct = (props) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const showPrices = () =>
     props.services.map((item) => {
       return (
@@ -21,13 +23,22 @@ const EditProduct = (props) => {
                 title="Redaguoti"
                 linkTo={`/admin/paslaugos/redaguoti-paslauga/${item._id}`}
               />
-
-              <button
-                className="btn btn__btn-small btn--red"
-                onClick={() => props.deleteProduct(item._id)}
+              <div>
+                <button
+                  className="btn btn__btn-small btn--red"
+                  onClick={() => setConfirmOpen(true)}
+                >
+                  Trinti
+                </button>
+              </div>
+              <ConfirmDialog
+                title="Trinti įrašą?"
+                open={confirmOpen}
+                setOpen={setConfirmOpen}
+                onConfirm={(id) => props.deleteProduct(item._id)}
               >
-                Trinti
-              </button>
+                Patvirtinkite, ar tikrai norite ištrinti įrašą?
+              </ConfirmDialog>
             </div>
           </div>
         </div>
