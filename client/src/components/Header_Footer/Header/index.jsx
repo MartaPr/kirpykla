@@ -3,13 +3,14 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/user_actions';
+import logoA from '../../../resources/styles/elements/Logo/logoA.svg';
 
 class Header extends Component {
   state = {
     isOpen: false,
     className: '',
     logo: {
-      name: 'Aouma nailcare',
+      name: '',
       linkTo: '/',
       public: true,
     },
@@ -134,7 +135,7 @@ class Header extends Component {
                 className="header header-left--logo"
                 to={this.state.logo.linkTo}
               >
-                {this.state.logo.name}
+                <img className="logo-img" src={logoA} alt="logo" />
               </NavLink>
             </div>
             <div className={`header header-links ${className}`}>
