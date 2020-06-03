@@ -22,6 +22,7 @@ import {
 class AddGalleryItem extends Component {
   state = {
     gallery: [],
+    showModal: 0,
     formError: false,
     formSuccess: false,
     formdata: {
@@ -165,6 +166,14 @@ class AddGalleryItem extends Component {
     });
   };
 
+  getModal = (value) => {
+    this.setState({ showModal: value });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: 0 });
+  };
+
   render() {
     return (
       <UserLayout>
@@ -210,6 +219,9 @@ class AddGalleryItem extends Component {
           <EditGalleryItem
             gallery={this.state.gallery}
             deleteGalleryItem={this.deleteGalleryItem}
+            hideModal={this.hideModal}
+            getModal={this.getModal}
+            showModal={this.state.showModal}
           />
         </div>
       </UserLayout>

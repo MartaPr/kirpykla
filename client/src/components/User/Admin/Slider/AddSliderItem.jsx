@@ -23,6 +23,7 @@ import { connect } from 'react-redux';
 class AddSliderItem extends Component {
   state = {
     slides: [],
+    showModal: 0,
     formError: false,
     formSuccess: false,
     formdata: {
@@ -180,6 +181,14 @@ class AddSliderItem extends Component {
     });
   };
 
+  getModal = (value) => {
+    this.setState({ showModal: value });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: 0 });
+  };
+
   render() {
     return (
       <UserLayout>
@@ -229,6 +238,9 @@ class AddSliderItem extends Component {
           <EditSliders
             slides={this.state.slides}
             deleteSlide={this.deleteSlide}
+            hideModal={this.hideModal}
+            getModal={this.getModal}
+            showModal={this.state.showModal}
           />
         </div>
       </UserLayout>
