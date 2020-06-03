@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ButtonOne from '../../../utils/Button';
 import ConfirmDialog from '../../../utils/ConfirmDiamlog';
 
 const EditSliders = (props) => {
-  const [confirmOpen, setConfirmOpen] = useState(false);
   const showSlides = () => {
     return props.slides.map((item) => {
       return (
@@ -23,24 +22,20 @@ const EditSliders = (props) => {
                 title="Redaguoti"
                 linkTo={`/admin/pagrindinis-puslapis/${item._id}`}
               />
-
-              <div>
-                <button
-                  className="btn btn__btn-small btn--red"
-                  onClick={() => setConfirmOpen(true)}
-                >
-                  Trinti
-                </button>
-                <ConfirmDialog
-                  title="Trinti įrašą?"
-                  open={confirmOpen}
-                  setOpen={setConfirmOpen}
-                  // onConfirm={props.deleteSlide(item._id)}
-                  onConfirm={() => props.deleteSlide(item._id)}
-                >
-                  Patvirtinkite, ar tikrai norite ištrinti įrašą?
-                </ConfirmDialog>
-              </div>
+              <button
+                className="btn btn__btn-small btn--red"
+                onClick={() => props.getModal(item._id)}
+              >
+                Trinti
+              </button>
+              <ConfirmDialog
+                title="Trinti įrašą?"
+                open={props.showModal === item._id}
+                setOpen={props.hideModal}
+                onConfirm={() => props.deleteSlide(item._id)}
+              >
+                Patvirtinkite, ar tikrai norite ištrinti įrašą?
+              </ConfirmDialog>
             </div>
           </div>
         </div>

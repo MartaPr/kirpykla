@@ -19,6 +19,7 @@ import { connect } from 'react-redux';
 class AddProduct extends Component {
   state = {
     services: [],
+    showModal: 0,
     formError: false,
     formSuccess: false,
     formdata: {
@@ -154,6 +155,14 @@ class AddProduct extends Component {
     });
   };
 
+  getModal = (value) => {
+    this.setState({ showModal: value });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: 0 });
+  };
+
   render() {
     return (
       <UserLayout>
@@ -198,6 +207,9 @@ class AddProduct extends Component {
           <EditProduct
             services={this.state.services}
             deleteProduct={this.deleteService}
+            hideModal={this.hideModal}
+            getModal={this.getModal}
+            showModal={this.state.showModal}
           />
         </div>
       </UserLayout>

@@ -1,4 +1,5 @@
 import React from 'react';
+import ConfirmDialog from '../../../utils/ConfirmDiamlog';
 
 const EditGalleryItem = (props) => {
   const showGalleryItems = () => {
@@ -17,10 +18,18 @@ const EditGalleryItem = (props) => {
                 ></div>
                 <button
                   className="btn btn__btn-small btn--red remove-img"
-                  onClick={() => props.deleteGalleryItem(item._id)}
+                  onClick={() => props.getModal(item._id)}
                 >
                   Trinti
                 </button>
+                <ConfirmDialog
+                  title="Trinti įrašą?"
+                  open={props.showModal === item._id}
+                  setOpen={props.hideModal}
+                  onConfirm={(id) => props.deleteGalleryItem(item._id)}
+                >
+                  Patvirtinkite, ar tikrai norite ištrinti nuotrauką?
+                </ConfirmDialog>
               </div>
             );
           })}
