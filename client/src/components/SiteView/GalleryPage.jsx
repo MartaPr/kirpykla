@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getGalleryItems } from '../../actions/gallery_actions';
+import { getGallery } from '../../actions/gallery_actions';
 import ImageGallery from 'react-image-gallery';
 
 class GalleryPage extends Component {
@@ -9,8 +9,8 @@ class GalleryPage extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(getGalleryItems()).then((response) => {
-      const gallery = this.props.gallery.toGallery;
+    this.props.dispatch(getGallery()).then((response) => {
+      const gallery = this.props.gallery.gallery;
       this.setState({
         gallery,
       });

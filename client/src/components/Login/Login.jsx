@@ -16,7 +16,7 @@ class Login extends Component {
         config: {
           name: 'email_input',
           type: 'email',
-          placeholder: 'el.pastas@pavyzdys.lt',
+          placeholder: 'Įveskite el. pašto adresą',
         },
         validation: {
           required: true,
@@ -77,6 +77,7 @@ class Login extends Component {
   render() {
     return (
       <div className="signin container-form">
+        <h2>Admin paskyra</h2>
         <form
           className="signin__register-form"
           onSubmit={(event) => this.submitForm(event)}

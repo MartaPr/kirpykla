@@ -77,7 +77,8 @@ class Header extends Component {
   defaultLink = (item, i) =>
     item.name === 'Atsijungti' ? (
       <div
-        className="log-out user-links"
+        className="user-links"
+        style={{ cursor: 'pointer' }}
         key={i}
         onClick={() => this.logOutHandler()}
       >

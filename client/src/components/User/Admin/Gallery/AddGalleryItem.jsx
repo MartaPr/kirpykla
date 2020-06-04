@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import UserLayout from '../../../../Hoc/User';
 
-import FormField from '../../../utils/Form/FormField';
 import EditGalleryItem from './EditGalleryItem';
 import {
-  update,
   generateData,
   isFormValid,
   resetFields,
@@ -15,7 +13,7 @@ import { connect } from 'react-redux';
 import {
   addGallery,
   clearGallery,
-  getGalleryItems,
+  getGallery,
   deleteGallery,
 } from '../../../../actions/gallery_actions';
 
@@ -26,43 +24,6 @@ class AddGalleryItem extends Component {
     formError: false,
     formSuccess: false,
     formdata: {
-      name: {
-        element: 'input',
-        value: '',
-        config: {
-          label: 'Pavadinimas',
-          name: 'name_input',
-          type: 'text',
-          placeholder: 'Įveskite pavadinimą',
-        },
-        validation: {
-          required: true,
-        },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-        showlabel: true,
-      },
-
-      publish: {
-        element: 'select',
-        value: '',
-        config: {
-          label: 'Publikuoti',
-          name: 'publish_input',
-          options: [
-            { key: true, value: 'Rodyti' },
-            { key: false, value: 'Paslėpti' },
-          ],
-        },
-        validation: {
-          required: true,
-        },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-        showlabel: true,
-      },
       images: {
         value: [],
         validation: {
@@ -77,19 +38,11 @@ class AddGalleryItem extends Component {
   };
 
   componentDidMount() {
-    this.getGallery();
+    this.getGalleryItems();
   }
 
   updateFields = (newFormdata) => {
     this.setState({
-      formdata: newFormdata,
-    });
-  };
-
-  updateForm = (element) => {
-    const newFormdata = update(element, this.state.formdata, 'gallery');
-    this.setState({
-      formError: false,
       formdata: newFormdata,
     });
   };
@@ -125,7 +78,7 @@ class AddGalleryItem extends Component {
       this.props.dispatch(addGallery(datatoSubmit)).then(() => {
         if (this.props.gallery.addGallery.success) {
           this.resetFieldHandler();
-          this.getGallery();
+          this.getGalleryItems();
         } else {
           this.setState({ formError: true });
         }
@@ -149,14 +102,14 @@ class AddGalleryItem extends Component {
     });
   };
 
-  getGallery = () => {
-    this.props.dispatch(getGalleryItems()).then((response) => {
-      const gallery = this.props.gallery.toGallery;
+  getGalleryItems = () => {
+    this.props.dispatch(getGallery()).then((response) => {
+      const gallery = this.props.gallery.gallery;
 
       this.setState({
         gallery,
       });
-      console.log('gallery items', this.state.gallery);
+      console.log('gallery items', gallery);
     });
   };
 
@@ -184,17 +137,6 @@ class AddGalleryItem extends Component {
             <FileUpload
               imagesHandler={(images) => this.imagesHandler(images)}
               reset={this.state.formSuccess}
-            />
-            <FormField
-              id={'name'}
-              formdata={this.state.formdata.name}
-              change={(element) => this.updateForm(element)}
-            />
-
-            <FormField
-              id={'publish'}
-              formdata={this.state.formdata.publish}
-              change={(element) => this.updateForm(element)}
             />
 
             {this.state.formSuccess ? (

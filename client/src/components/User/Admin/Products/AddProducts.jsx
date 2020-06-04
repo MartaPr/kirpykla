@@ -27,7 +27,7 @@ class AddProduct extends Component {
         element: 'input',
         value: '',
         config: {
-          label: '',
+          label: 'Įveskite paslaugą',
           name: 'name_input',
           type: 'text',
           placeholder: 'Įveskite paslaugą',

@@ -52,13 +52,15 @@
 
 .container-form {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 400px;
   padding: 0 15px;
   width: 100%;
   @media screen and(max-width: $sm) {
     padding: 0 20px;
+    max-width: 335px;
   }
   @media screen and(min-width: 678px) and(max-width: $md) {
     padding: 0 40px;
+    max-width: 600px;
   }
 }
