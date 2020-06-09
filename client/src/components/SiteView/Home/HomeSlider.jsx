@@ -16,7 +16,6 @@ const HomeSlider = (props) => {
 
   const generateSlides = () => {
     return props.slides.map((item) => {
-      console.log('item img', item.image[0].url);
       return (
         <div className="home-slider" key={item._id}>
           <div

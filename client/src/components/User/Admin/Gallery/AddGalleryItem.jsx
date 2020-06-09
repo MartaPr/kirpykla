@@ -71,9 +71,6 @@ class AddGalleryItem extends Component {
 
     let datatoSubmit = generateData(this.state.formdata, 'gallery');
     let formIsValid = isFormValid(this.state.formdata, 'gallery');
-
-    console.log('gallery', this.props);
-
     if (formIsValid) {
       this.props.dispatch(addGallery(datatoSubmit)).then(() => {
         if (this.props.gallery.addGallery.success) {
@@ -109,7 +106,6 @@ class AddGalleryItem extends Component {
       this.setState({
         gallery,
       });
-      console.log('gallery items', gallery);
     });
   };
 
@@ -144,10 +140,7 @@ class AddGalleryItem extends Component {
             ) : null}
 
             {this.state.formError ? (
-              <div className="error-label">
-                Patikrinkite duomenis
-                {console.log('error', this.state.formError)}
-              </div>
+              <div className="error-label">Patikrinkite duomenis</div>
             ) : null}
             <button
               className="btn btn__btn-default"

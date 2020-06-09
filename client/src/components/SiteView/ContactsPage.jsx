@@ -17,7 +17,6 @@ class ContactsPage extends Component {
   componentDidMount() {
     this.props.dispatch(getContacts()).then((response) => {
       const contacts = this.props.contacts.contacts;
-      console.log('contacts client', contacts);
       this.setState({
         contacts,
       });
@@ -122,31 +121,6 @@ class ContactsPage extends Component {
           </div>
         </div>
       </div>
-      // <section className="contact-page">
-      // <div className="container">
-      //   <div className="contact-page wrapper">
-      //     <div className="contact info">
-      //       <div className="image">
-      //         <img src={salon} alt="salon" />
-      //       </div>
-      //     </div>
-      //     <div className="contact info info-right">
-      //       <iframe
-      //         title="map"
-      //         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.938999962108!2d25.278091316109112!3d54.675501980279066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946b1a345c5f%3A0x41f70f803740d36!2sKruop%C5%B3%20g.%203%2C%20Vilnius%2001140!5e0!3m2!1sen!2slt!4v1590227550628!5m2!1sen!2slt"
-      //         width="600"
-      //         height="450"
-      //         frameBorder="0"
-      //         style={{ border: '0' }}
-      //         allowFullScreen=""
-      //         aria-hidden="false"
-      //         tabIndex="0"
-      //       ></iframe>
-      //       {this.renderContacts()}
-      //     </div>
-      //   </div>
-      // </div>
-      // </section>
     );
   }
 }

@@ -2,17 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// const links = [
-//   {
-//     name: 'Mano paskyra',
-//     linkTo: '/user/dashboard',
-//   },
-//   {
-//     name: 'Mano paslaugos',
-//     linkTo: '/user/paslaugos',
-//   },
-// ];
-
 const admin = [
   {
     name: 'Pagrindinio puslapio valdymas',
@@ -47,16 +36,6 @@ const UserLayout = (props) => {
   return (
     <div className="container">
       <div className="user-info">
-        {/* <nav className="user-info user-info__user-left">
-          <h2>Informacija</h2>
-          <div className="links">{generateLinks(links)}</div>
-          {props.user.userdata.isAdmin ? (
-            <div>
-              <h2>Admin</h2>
-              <div className="links">{generateLinks(admin)}</div>
-            </div>
-          ) : null}
-        // </nav> */}
         <nav className="user-info user-info__user-left">
           <h2>Puslapio informacija</h2>
           <div className="links">{generateLinks(admin)}</div>

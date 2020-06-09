@@ -106,9 +106,7 @@ export const populateFields = (formdata, field) => {
     formdata[key].valid = true;
     formdata[key].touched = true;
     formdata[key].validationMessage = '';
-    console.log('key', key);
   }
-  console.log('formdata', formdata);
 
   return formdata;
 };

@@ -15,7 +15,6 @@ export function addSliderItem(datatoSubmit) {
   const request = axios
     .post(`${SLIDER_SERVER}/item`, datatoSubmit)
     .then((response) => response.data);
-  console.log('res', request);
   return {
     type: ADD_SLIDER_ITEM,
     payload: request,
@@ -26,7 +25,6 @@ export function getSlider() {
   const request = axios
     .get(`${SLIDER_SERVER}/items`)
     .then((response) => response.data);
-  console.log('get slider response', request);
   return {
     type: GET_SLIDER,
     payload: request,
@@ -41,7 +39,6 @@ export function getSliderImages() {
       item: newState,
     };
   });
-  console.log('res items', request);
   return {
     type: GET_SLIDER_ITEM,
     payload: request,

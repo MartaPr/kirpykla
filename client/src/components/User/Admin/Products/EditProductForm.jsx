@@ -79,7 +79,6 @@ class EditProductForm extends Component {
     const _id = this.props.match.params.id;
     this.props.dispatch(getProductById(_id)).then((response) => {
       let services = this.props.products.services;
-      console.log('products props', this.props);
       this.setState({
         services,
       });
@@ -90,7 +89,6 @@ class EditProductForm extends Component {
       this.setState({
         formdata: newFormData,
       });
-      console.log('formdata', this.state.formdata);
     });
   }
 
@@ -100,7 +98,6 @@ class EditProductForm extends Component {
       formError: false,
       formdata: newFormdata,
     });
-    console.log('update form', newFormdata);
   };
 
   submitForm = (event) => {
@@ -108,8 +105,6 @@ class EditProductForm extends Component {
 
     let datatoSubmit = generateData(this.state.formdata, 'update_product');
     let formIsValid = isFormValid(this.state.formdata, 'update_product');
-
-    console.log('datatoSubmit', datatoSubmit);
     if (formIsValid) {
       this.props
         .dispatch(updateProduct(datatoSubmit, this.props.match.params.id))

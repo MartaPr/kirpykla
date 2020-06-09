@@ -14,7 +14,6 @@ class Footer extends Component {
       this.setState({
         contacts,
       });
-      console.log('contacts', contacts);
     });
   }
 

@@ -13,7 +13,6 @@ export function getGallery() {
   const request = axios
     .get(`${GALLERY_SERVER}/items`)
     .then((response) => response.data);
-  console.log('get gallery response', request);
   return {
     type: GET_GALLERY,
     payload: request,
@@ -24,7 +23,6 @@ export function addGallery(datatoSubmit) {
   const request = axios
     .post(`${GALLERY_SERVER}/item`, datatoSubmit)
     .then((response) => response.data);
-  console.log('res', request);
   return {
     type: ADD_GALLERY_ITEM,
     payload: request,
@@ -39,7 +37,6 @@ export function getGalleryItems(skip, limit) {
       item: newState,
     };
   });
-  console.log('res items', request);
   return {
     type: GET_GALLERY_ITEM,
     payload: request,

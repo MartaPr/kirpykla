@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Layout from './Hoc/Layout';
 import RegisterLogin from './components/Login';
 import Register from './components/Login/Register';
-// import Userdashboard from './components/User';
 import Auth from './Hoc/Auth';
 import AddProduct from './components/User/Admin/Products/AddProducts';
 import PriceList from './components/SiteView/PriceList';

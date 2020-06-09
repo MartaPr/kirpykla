@@ -16,8 +16,6 @@ class PriceList extends Component {
       this.setState({
         services,
       });
-
-      console.log('services', this.state.services);
     });
   }
 

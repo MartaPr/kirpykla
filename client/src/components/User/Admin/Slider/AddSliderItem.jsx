@@ -121,7 +121,6 @@ class AddSliderItem extends Component {
       formError: false,
       formdata: newFormdata,
     });
-    console.log('element', element);
   };
 
   resetFieldHandler = () => {
@@ -171,7 +170,6 @@ class AddSliderItem extends Component {
       this.setState({
         slides,
       });
-      console.log('slides from props', slides);
     });
   };
 
@@ -221,10 +219,7 @@ class AddSliderItem extends Component {
               <div className="form-success">Sėkmingai pridėta</div>
             ) : null}
             {this.state.formError ? (
-              <div className="error-label">
-                Patikrinkite duomenis
-                {console.log('error', this.state.formError)}
-              </div>
+              <div className="error-label">Patikrinkite duomenis</div>
             ) : null}
             <button
               className="btn btn__btn-default"

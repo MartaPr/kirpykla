@@ -97,7 +97,6 @@ class ContactInfo extends Component {
     event.preventDefault();
     let datatoSubmit = generateData(this.state.formdata, 'contacts');
     let formIsValid = isFormValid(this.state.formdata, 'contacts');
-    console.log('this.state.contacts.length', this.state.contacts.length);
     if (this.state.contacts.length === 0) {
       if (formIsValid) {
         this.props.dispatch(addContacts(datatoSubmit)).then(() => {

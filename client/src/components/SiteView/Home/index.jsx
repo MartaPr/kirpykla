@@ -15,8 +15,6 @@ class Home extends Component {
     this.props.dispatch(getSlider()).then((response) => {
       const getSlides = this.props.slider.size;
       const slides = getSlides.filter((slide) => slide.publish === true);
-
-      console.log('slides', slides);
       this.setState({
         slides,
       });

@@ -99,7 +99,6 @@ class EditSliderForm extends Component {
         slide,
         image,
       });
-      console.log('slider state', this.state.slide);
       const newFormData = populateFields(this.state.formdata, this.state.slide);
       this.setState({
         formdata: newFormData,
@@ -125,7 +124,6 @@ class EditSliderForm extends Component {
       formError: false,
       formdata: newFormdata,
     });
-    console.log('update form', newFormdata);
   };
 
   submitForm = (event) => {
@@ -205,10 +203,7 @@ class EditSliderForm extends Component {
               </div>
             ) : null}
             {this.state.formError ? (
-              <div className="error-label">
-                Patikrinkite duomenis
-                {console.log('error', this.state.formError)}
-              </div>
+              <div className="error-label">Patikrinkite duomenis</div>
             ) : null}
             <button
               className="btn btn__btn-default"

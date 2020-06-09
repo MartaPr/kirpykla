@@ -95,7 +95,6 @@ class AddProduct extends Component {
       formError: false,
       formdata: newFormdata,
     });
-    console.log('element', element);
   };
 
   resetFieldHandler = () => {
@@ -145,7 +144,6 @@ class AddProduct extends Component {
       this.setState({
         services,
       });
-      console.log('services from props', services);
     });
   };
 
