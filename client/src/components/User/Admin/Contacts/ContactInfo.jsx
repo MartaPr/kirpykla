@@ -97,6 +97,7 @@ class ContactInfo extends Component {
     event.preventDefault();
     let datatoSubmit = generateData(this.state.formdata, 'contacts');
     let formIsValid = isFormValid(this.state.formdata, 'contacts');
+    console.log('this.state.contacts.length', this.state.contacts.length);
     if (this.state.contacts.length === 0) {
       if (formIsValid) {
         this.props.dispatch(addContacts(datatoSubmit)).then(() => {
@@ -133,16 +134,20 @@ class ContactInfo extends Component {
   getContactInfo = () => {
     this.props.dispatch(getContacts()).then((response) => {
       let contacts = this.props.contacts.contacts[0];
-      this.setState({
-        contacts,
-      });
-      const newFormData = populateFields(
-        this.state.formdata,
-        this.state.contacts
-      );
-      this.setState({
-        formdata: newFormData,
-      });
+      if (contacts) {
+        this.setState({
+          contacts,
+        });
+        const newFormData = populateFields(
+          this.state.formdata,
+          this.state.contacts
+        );
+        this.setState({
+          formdata: newFormData,
+        });
+      } else {
+        return null;
+      }
     });
   };
 
