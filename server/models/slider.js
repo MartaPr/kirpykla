@@ -21,6 +21,10 @@ const SliderSchema = mongoose.Schema({
     required: true,
     type: Boolean,
   },
+  history: {
+    type: Array,
+    default: [],
+  },
 });
 
 const Slider = mongoose.model('Slider', SliderSchema);
