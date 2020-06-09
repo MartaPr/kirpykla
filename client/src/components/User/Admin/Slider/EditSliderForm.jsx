@@ -140,6 +140,9 @@ class EditSliderForm extends Component {
         .then(() => {
           if (this.state.image.length && this.props.slider.updateSlider) {
             this.setState({ formError: false, formSuccess: true });
+            setTimeout(() => {
+              this.props.history.push('/admin/pagrindinis-puslapis');
+            }, 3000);
           } else {
             this.setState({ formError: true });
           }

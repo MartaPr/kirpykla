@@ -116,6 +116,9 @@ class EditProductForm extends Component {
         .then(() => {
           if (this.props.products.updateProduct) {
             this.setState({ formError: false, formSuccess: true });
+            setTimeout(() => {
+              this.props.history.push('/admin/paslaugos');
+            }, 3000);
           } else {
             this.setState({ formError: true });
           }

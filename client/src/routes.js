@@ -20,11 +20,6 @@ const Routes = () => {
   return (
     <Layout>
       <Switch>
-        {/* <Route
-          path="/admin/informacija"
-          exact
-          component={Auth(Userdashboard, true)}
-        /> */}
         <Route
           path="/admin/pagrindinis-puslapis"
           exact
