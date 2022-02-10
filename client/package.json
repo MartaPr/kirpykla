@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "emotion-theming": "^10.0.27",
     "http-proxy-middleware": "^0.19.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-dropzone": "^4.2.12",
