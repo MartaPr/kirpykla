@@ -31,7 +31,7 @@
     "concurrently": "^3.6.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-formidable": "^1.0.0",
     "fs-extra": "^7.0.1",
     "i": "^0.3.6",
